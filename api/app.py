@@ -12,8 +12,8 @@ def index():
     return jsonify({"status": "OK", "message": "OK"})
 
 
-@app.route('/api/products/', methods=['GET'])
-@app.route('/api/products/<product_id>/', methods=['GET'])
+@app.route('/products/', methods=['GET'])
+@app.route('/products/<product_id>/', methods=['GET'])
 def products_get(product_id=None):
     response = spcall('products_get', (product_id,))
     if 'Error' in str(response[0][0]):
@@ -25,8 +25,8 @@ def products_get(product_id=None):
     return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
 
 
-@app.route('/api/products/', methods=['POST'])
-@app.route('/api/products/<product_id>/', methods=['PUT'])
+@app.route('/products/', methods=['POST'])
+@app.route('/products/<product_id>/', methods=['PUT'])
 def products_upsert(product_id=None):
     data = json.loads(request.data)
 
@@ -58,8 +58,8 @@ def products_upsert(product_id=None):
         raise InvalidForm('Some fields have error values', status_code=422)
 
 
-@app.route('/api/products/<product_id>/infos/', methods=['GET'])
-@app.route('/api/products/<product_id>/infos/<info_id>/', methods=['GET'])
+@app.route('/products/<product_id>/infos/', methods=['GET'])
+@app.route('/products/<product_id>/infos/<info_id>/', methods=['GET'])
 def product_infos_get(product_id, info_id=None):
     response = spcall('product_infos_get', (product_id, info_id), )
     if 'Error' in str(response[0][0]):
@@ -71,8 +71,8 @@ def product_infos_get(product_id, info_id=None):
     return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
 
 
-@app.route('/api/products/<product_id>/infos/', methods=['POST'])
-@app.route('/api/products/<product_id>/infos/<info_id>/', methods=['PUT'])
+@app.route('/products/<product_id>/infos/', methods=['POST'])
+@app.route('/products/<product_id>/infos/<info_id>/', methods=['PUT'])
 def product_infos_upsert(product_id, info_id=None):
     data = json.loads(request.data)
 
@@ -106,8 +106,8 @@ def product_infos_upsert(product_id, info_id=None):
         raise InvalidForm('Some fields have error values', status_code=422)
 
 
-@app.route('/api/products/<product_id>/videos/', methods=['GET'])
-@app.route('/api/products/<product_id>/videos/<video_id>/', methods=['GET'])
+@app.route('/products/<product_id>/videos/', methods=['GET'])
+@app.route('/products/<product_id>/videos/<video_id>/', methods=['GET'])
 def product_videos_get(product_id, video_id=None):
     response = spcall('product_videos_get', (product_id, video_id), )
     if 'Error' in str(response[0][0]):
@@ -120,8 +120,8 @@ def product_videos_get(product_id, video_id=None):
     return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
 
 
-@app.route('/api/products/<product_id>/videos/', methods=['POST'])
-@app.route('/api/products/<product_id>/videos/<video_id>/', methods=['PUT'])
+@app.route('/products/<product_id>/videos/', methods=['POST'])
+@app.route('/products/<product_id>/videos/<video_id>/', methods=['PUT'])
 def product_videos_upsert(product_id, video_id=None):
     data = json.loads(request.data)
 
@@ -152,8 +152,8 @@ def product_videos_upsert(product_id, video_id=None):
         raise InvalidForm('Some fields have error values', status_code=422)
 
 
-@app.route('/api/notes/', methods=['GET'])
-@app.route('/api/notes/<note_id>/', methods=['GET'])
+@app.route('/notes/', methods=['GET'])
+@app.route('/notes/<note_id>/', methods=['GET'])
 def notes_get(note_id=None):
     response = spcall('notes_get', (note_id,))
     if 'Error' in str(response[0][0]):
@@ -165,8 +165,8 @@ def notes_get(note_id=None):
     return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
 
 
-@app.route('/api/notes/', methods=['POST'])
-@app.route('/api/notes/<note_id>/', methods=['PUT'])
+@app.route('/notes/', methods=['POST'])
+@app.route('/notes/<note_id>/', methods=['PUT'])
 def notes_upsert(note_id=None):
     data = json.loads(request.data)
 
@@ -197,7 +197,7 @@ def notes_upsert(note_id=None):
         raise InvalidForm('Some fields have error values', status_code=422)
 
 
-@app.route('/api/notes/<note_id>/', methods=['DELETE'])
+@app.route('/notes/<note_id>/', methods=['DELETE'])
 def notes_delete(note_id=None):
     response = spcall('notes_delete', (note_id,))
     if 'Error' in str(response[0][0]):
