@@ -1,13 +1,208 @@
 #!flask/bin/python
 import flask
-from flask import Flask
+import json
+from flask import Flask, jsonify, request
+from utils import spcall, build_json, InvalidRequest, clean_form, InvalidForm
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
-    return "Hello, World!"
+    return jsonify({"status": "OK", "message": "OK"})
+
+
+@app.route('/api/products/', methods=['GET'])
+@app.route('/api/products/<product_id>/', methods=['GET'])
+def products_get(product_id=None):
+    response = spcall('products_get', (product_id,))
+    if 'Error' in str(response[0][0]):
+        return jsonify({'status': 'error', 'message': response[0][0]})
+
+    recs = []
+    for r in response:
+        recs.append({"product_id": r[0], "product_name": r[1], "description": r[2], "price": r[3], "date_added": str(r[4])})
+    return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
+
+
+@app.route('/api/products/', methods=['POST'])
+@app.route('/api/products/<product_id>/', methods=['PUT'])
+def products_upsert(product_id=None):
+    data = json.loads(request.data)
+
+    if clean_form(data):
+
+        response = spcall('products_upsert', (
+            product_id,
+            data['product_name'],
+            data['description'],
+            data['price'],
+            str(data['date_added']),),)
+
+        if product_id and response[0][0] == 'error' and request.method == "PUT":
+            raise InvalidRequest('Does not exist', status_code=404)
+
+        if 'Error' in str(response[0][0]):
+            return jsonify({'status': 'error', 'message': response[0][0]})
+
+        recs = []
+        for r in response:
+            recs.append({"product_id": r[0], "product_name": r[1], "description": r[2], "price": r[3], "date_added": str(r[4])})
+
+            status_code = 200
+            if not product_id:
+                status_code = 201
+
+            return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)}), status_code
+    else:
+        raise InvalidForm('Some fields have error values', status_code=422)
+
+
+@app.route('/api/products/<product_id>/infos/', methods=['GET'])
+@app.route('/api/products/<product_id>/infos/<info_id>/', methods=['GET'])
+def product_infos_get(product_id, info_id=None):
+    response = spcall('product_infos_get', (product_id, info_id), )
+    if 'Error' in str(response[0][0]):
+        return jsonify({'status': 'error', 'message': response[0][0]})
+
+    recs = []
+    for r in response:
+        recs.append({'product_id': r[0], 'info_id': r[1]})
+    return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
+
+
+@app.route('/api/products/<product_id>/infos/', methods=['POST'])
+@app.route('/api/products/<product_id>/infos/<info_id>/', methods=['PUT'])
+def product_infos_upsert(product_id, info_id=None):
+    data = json.loads(request.data)
+
+    if clean_form(data):
+
+        response = spcall('product_infos_upsert', (
+            info_id,
+            product_id,
+            data['_what'],
+            data['_when'],
+            data['_where'],
+            data['_how'],
+            str(data['date_added']),),)
+
+        if info_id and response[0][0] == 'error' and request.method == "PUT":
+            raise InvalidRequest('Does not exist', status_code=404)
+
+        if 'Error' in str(response[0][0]):
+            return jsonify({'status': 'error', 'message': response[0][0]})
+
+        recs = []
+        for r in response:
+            recs.append({"info_id": r[0], "product_id": r[1]})
+
+            status_code = 200
+            if not info_id:
+                status_code = 201
+
+            return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)}), status_code
+    else:
+        raise InvalidForm('Some fields have error values', status_code=422)
+
+
+@app.route('/api/products/<product_id>/videos/', methods=['GET'])
+@app.route('/api/products/<product_id>/videos/<video_id>/', methods=['GET'])
+def product_videos_get(product_id, video_id=None):
+    response = spcall('product_videos_get', (product_id, video_id), )
+    if 'Error' in str(response[0][0]):
+        return jsonify({'status': 'error', 'message': response[0][0]})
+
+    recs = []
+    for r in response:
+        recs.append(
+            {'product_id': r[0], 'video_id': r[1]})
+    return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
+
+
+@app.route('/api/products/<product_id>/videos/', methods=['POST'])
+@app.route('/api/products/<product_id>/videos/<video_id>/', methods=['PUT'])
+def product_videos_upsert(product_id, video_id=None):
+    data = json.loads(request.data)
+
+    if clean_form(data):
+
+        response = spcall('product_videos_upsert', (
+            video_id,
+            product_id,
+            data['video_name'],
+            str(data['date_added']),),)
+
+        if video_id and response[0][0] == 'error' and request.method == "PUT":
+            raise InvalidRequest('Does not exist', status_code=404)
+
+        if 'Error' in str(response[0][0]):
+            return jsonify({'status': 'error', 'message': response[0][0]})
+
+        recs = []
+        for r in response:
+            recs.append({"video_id": r[0], "product_id": r[1]})
+
+            status_code = 200
+            if not video_id:
+                status_code = 201
+
+            return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)}), status_code
+    else:
+        raise InvalidForm('Some fields have error values', status_code=422)
+
+
+@app.route('/api/notes/', methods=['GET'])
+@app.route('/api/notes/<note_id>/', methods=['GET'])
+def notes_get(note_id=None):
+    response = spcall('notes_get', (note_id,))
+    if 'Error' in str(response[0][0]):
+        return jsonify({'status': 'error', 'message': response[0][0]})
+
+    recs = []
+    for r in response:
+        recs.append({"note_id": r[0], "name": r[1], "description": r[2], "date_added": str(r[3])})
+    return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)})
+
+
+@app.route('/api/notes/', methods=['POST'])
+@app.route('/api/notes/<note_id>/', methods=['PUT'])
+def notes_upsert(note_id=None):
+    data = json.loads(request.data)
+
+    if clean_form(data):
+
+        response = spcall('notes_upsert', (
+            note_id,
+            data['name'],
+            data['description'],
+            str(data['date_added']),),)
+
+        if note_id and response[0][0] == 'error' and request.method == "PUT":
+            raise InvalidRequest('Does not exist', status_code=404)
+
+        if 'Error' in str(response[0][0]):
+            return jsonify({'status': 'error', 'message': response[0][0]})
+
+        recs = []
+        for r in response:
+            recs.append({"note_id": r[0], "name": r[1], "description": r[2], "date_added": str(r[3])})
+
+            status_code = 200
+            if not note_id:
+                status_code = 201
+
+            return jsonify({'status': 'ok', 'entries': recs, 'count': len(recs)}), status_code
+    else:
+        raise InvalidForm('Some fields have error values', status_code=422)
+
+
+@app.route('/api/notes/<note_id>/', methods=['DELETE'])
+def notes_delete(note_id=None):
+    response = spcall('notes_delete', (note_id,))
+    if 'Error' in str(response[0][0]):
+        return jsonify({'status': 'error', 'message': response[0][0]})
+    return jsonify({'status': 'ok', 'message': response[0][0]})
 
 
 @app.after_request
