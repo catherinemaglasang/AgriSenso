@@ -1,7 +1,7 @@
 import flask
 import json
 from flask import Flask, jsonify, request
-from utils import spcall, InvalidRequest, clean_form, InvalidForm, build_json
+from utils import spcall, InvalidRequest, clean_form, InvalidForm
 
 app = Flask(__name__)
 
@@ -121,9 +121,6 @@ def product_videos_get(product_id, video_id=None):
         recs.append(
             {'product_id': r[0], 'video_id': r[1]})
     return jsonify({'status': 'OK', 'message': 'OK', 'entries': recs, 'count': len(recs)})
-    # json_dict = build_json(response)
-    #
-    # return jsonify(json_dict)
 
 
 @app.route('/products/<product_id>/videos/', methods=['POST'])
@@ -162,16 +159,14 @@ def product_videos_upsert(product_id, video_id=None):
 @app.route('/notes/<note_id>/', methods=['GET'])
 def notes_get(note_id=None):
     response = spcall('notes_get', (note_id,))
-    # if 'Error' in str(response[0][0]):
-    #     return jsonify({'status': 'error', 'message': response[0][0]})
-    #
-    # recs = []
-    # for r in response:
-    #     recs.append({"note_id": r[0], "name": r[1], "description": r[2], "date_added": str(r[3])})
-    # return jsonify({'status': 'OK', 'message': 'OK', 'entries': recs, 'count': len(recs)})
-    json_dict = build_json(response)
+    if 'Error' in str(response[0][0]):
+        return jsonify({'status': 'error', 'message': response[0][0]})
 
-    return jsonify(json_dict)
+    recs = []
+    for r in response:
+        recs.append({"note_id": r[0], "name": r[1], "description": r[2], "date_added": str(r[3])})
+    return jsonify({'status': 'OK', 'message': 'OK', 'entries': recs, 'count': len(recs)})
+
 
 @app.route('/notes/', methods=['POST'])
 @app.route('/notes/<note_id>/', methods=['PUT'])
