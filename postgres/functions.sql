@@ -58,22 +58,36 @@ CREATE OR REPLACE FUNCTION infos_upsert(IN par_info_id INT, IN par_what TEXT,
                                             IN par_when TEXT, IN par_where TEXT, IN par_how TEXT,
                                             IN par_date_added  TIMESTAMP)
   RETURNS TEXT AS $$
-DECLAREproducts_get
+DECLARE
   loc_response TEXT;
+  loc_out TEXT;
 BEGIN
 
   IF par_info_id ISNULL
   THEN
     INSERT INTO infos (_what, _when, _where, _how, date_added)
-    VALUES (par_what, par_when, par_where, par_how, par_date_added);
-    loc_response = 'OK';
+    VALUES (par_what, par_when, par_where, par_how, par_date_added)
+    RETURNING info_id
+      INTO loc_response;
   ELSE
-    UPDATE infos
-    SET _what = par_what, _when= par_when, _where = par_where, _how = par_how, date_added = par_date_added
-    WHERE info_id = par_info_id;
-    loc_response = 'OK';
-  END IF;
 
+    SELECT INTO loc_out info_id
+    FROM infos
+    WHERE info_id = par_info_id;
+
+    IF loc_out ISNULL
+    THEN
+      loc_response = 'error';
+    ELSE
+
+      UPDATE infos
+      SET _what = par_what, _when= par_when, _where = par_where, _how = par_how, date_added = par_date_added
+      WHERE info_id = par_info_id;
+      loc_response = par_info_id;
+
+    END IF;
+
+  END IF;
   RETURN loc_response;
 END;
 $$ LANGUAGE 'plpgsql';

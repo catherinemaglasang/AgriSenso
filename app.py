@@ -51,6 +51,49 @@ def products_upsert(product_id=None):
         raise InvalidForm('Some fields have error values', status_code=422)
 
 
+@app.route('/infos/', methods=['GET'])
+@app.route('/infos/<info_id>/', methods=['GET'])
+def attributes_get(info_id=None):
+    data = spcall('infos_get', (info_id,), )
+
+    response = build_json(data)
+
+    if info_id and len(response['entries']) == 0:
+        """ Product ID does not exist """
+        raise InvalidRequest('Does not exist', status_code=404)
+
+    return jsonify(response)
+
+
+@app.route('/infos/', methods=['POST'])
+@app.route('/infos/<info_id>/', methods=['PUT'])
+def attributes_upsert(info_id=None):
+    data = json.loads(request.data)
+
+    if clean_form(data):
+
+        response = spcall('infos_upsert', (
+            info_id,
+            data['_what'],
+            data['_when'],
+            data['_where'],
+            data['_how'],
+            str(data['date_added'],)))
+
+        if info_id and response[0][0] == 'error' and request.method == "PUT":
+            raise InvalidRequest('Does not exist', status_code=404)
+
+        json_dict = build_json(response)
+
+        status_code = 200
+        if not info_id:
+            status_code = 201
+
+        return jsonify(json_dict), status_code
+    else:
+        raise InvalidForm('Some fields have error values', status_code=422)
+
+
 @app.route('/products/<product_id>/infos/', methods=['GET'])
 @app.route('/products/<product_id>/infos/<info_id>/', methods=['GET'])
 def product_infos_get(product_id, info_id=None):
