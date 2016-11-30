@@ -111,21 +111,26 @@ $$ LANGUAGE 'plpgsql';
 --
 --
 --
-CREATE OR REPLACE FUNCTION product_infos_upsert(IN par_product_id INT, IN par_info_id INT)
+CREATE OR REPLACE FUNCTION product_infos_upsert(IN par_info_id INT, IN par_product_id INT, par_date_added TIMESTAMP )
   RETURNS TEXT AS $$
 DECLARE
   loc_response TEXT;
+  loc_id       INT;
 BEGIN
+
+  SELECT INTO loc_id info_id
+  FROM product_infos
+  WHERE info_id = par_info_id AND product_id = par_product_id;
 
   IF par_info_id ISNULL
   THEN
-    INSERT INTO product_infos (product_id, info_id)
-    VALUES (par_product_id, par_info_id);
+    INSERT INTO product_infos (info_id, product_id, date_added)
+    VALUES (par_info_id, par_product_id, par_date_added);
     loc_response = 'OK';
   ELSE
     UPDATE product_infos
-    SET info_id = par_info_id
-    WHERE info_id = par_info_id;
+    SET date_added = par_date_added
+    WHERE info_id = par_info_id AND product_id = par_product_id;
     loc_response = 'OK';
   END IF;
 

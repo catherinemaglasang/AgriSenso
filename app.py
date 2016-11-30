@@ -138,13 +138,14 @@ def videos_upsert(video_id=None):
 @app.route('/products/<product_id>/infos/<info_id>/', methods=['GET'])
 def product_infos_get(product_id, info_id=None):
     response = spcall('product_infos_get', (info_id, product_id,),)
-    if 'Error' in str(response[0][0]):
-        return jsonify({'status': 'error', 'message': response[0][0]})
 
-    recs = []
-    for r in response:
-        recs.append({'product_id': r[0], 'info_id': r[1]})
-    return jsonify({'status': 'OK', 'message': 'OK', 'entries': recs, 'count': len(recs)})
+    json_dict = build_json(response)
+
+    if info_id and len(json_dict['entries']) == 0:
+        """ Product ID does not exist """
+        raise InvalidRequest('Does not exist', status_code=404)
+
+    return jsonify(json_dict)
 
 
 @app.route('/products/<product_id>/infos/', methods=['POST'])
@@ -157,29 +158,17 @@ def product_infos_upsert(product_id, info_id=None):
         response = spcall('product_infos_upsert', (
             info_id,
             product_id,
-            data['_what'],
-            data['_when'],
-            data['_where'],
-            data['_how'],
-            str(data['date_added']),),)
+            str(data['date_added'],)))
 
-        if info_id and response[0][0] == 'error' and request.method == "PUT":
-            raise InvalidRequest('Does not exist', status_code=404)
+        json_dict = build_json(response)
 
-        if 'Error' in str(response[0][0]):
-            return jsonify({'status': 'error', 'message': response[0][0]})
+        status_code = 200
+        if not info_id:
+            status_code = 201
 
-        recs = []
-        for r in response:
-            recs.append({"info_id": r[0], "product_id": r[1]})
-
-            status_code = 200
-            if not info_id:
-                status_code = 201
-
-            return jsonify({'status': 'OK', 'message': 'OK', 'entries': recs, 'count': len(recs)}), status_code
+        return jsonify(json_dict), status_code
     else:
-        raise InvalidForm('Some fields have error values', status_code=422)
+        raise InvalidForm('Some fields have error values', status_code=422)  # Images
 
 
 @app.route('/products/<product_id>/videos/', methods=['GET'])

@@ -21,12 +21,6 @@ Feature: Get, Create & Update Videos
     And I get an "OK" status
     And I get an "OK" message
 
-  Scenario: Get Video - 404 Error
-    Given I access the url "/videos/9999/"
-    Then I get a "404" response
-    And I get an "error" status
-    And I get an "Does not exist" message
-
   Scenario: Add Video - Success!
     Given I have the following data
      |video_id|video_name|date_added |

@@ -18,7 +18,8 @@ CREATE TABLE infos (
 CREATE TABLE product_infos (
   product_info_id SERIAL NOT NULL PRIMARY KEY,
   info_id INT,
-  product_id INT
+  product_id INT,
+  date_added TIMESTAMP
 );
 
 CREATE TABLE videos (
