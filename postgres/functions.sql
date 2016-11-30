@@ -227,18 +227,33 @@ CREATE OR REPLACE FUNCTION notes_upsert(IN par_note_id   INT, IN par_note_name T
   RETURNS TEXT AS $$
 DECLARE
   loc_response TEXT;
+  loc_out TEXT;
 BEGIN
 
   IF par_note_id ISNULL
   THEN
     INSERT INTO notes(note_name, description, date_added)
-    VALUES (par_note_name, par_description, par_date_added);
-    loc_response = 'OK';
+    VALUES (par_note_name, par_description, par_date_added)
+    RETURNING note_id
+      INTO loc_response;
   ELSE
-    UPDATE notes
-    SET note_name = par_note_name
+
+    SELECT INTO loc_out note_id
+    FROM notes
     WHERE note_id = par_note_id;
-    loc_response = 'OK';
+
+    IF loc_out ISNULL
+    THEN
+      loc_response = 'error';
+    ELSE
+
+      UPDATE notes
+      SET note_name = par_note_name
+      WHERE note_id = par_note_id;
+      loc_response = par_note_id;
+
+    END IF;
+
   END IF;
 
   RETURN loc_response;

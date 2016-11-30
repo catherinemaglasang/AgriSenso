@@ -148,14 +148,12 @@ def product_videos_upsert(product_id, video_id=None):
 @app.route('/notes/', methods=['GET'])
 @app.route('/notes/<note_id>/', methods=['GET'])
 def notes_get(note_id=None):
-    response = spcall('notes_get', (note_id,))
-    if 'Error' in str(response[0][0]):
-        return jsonify({'status': 'error', 'message': response[0][0]})
-
-    recs = []
-    for r in response:
-        recs.append({"note_id": r[0], "name": r[1], "description": r[2], "date_added": str(r[3])})
-    return jsonify({'status': 'OK', 'message': 'OK', 'entries': recs, 'count': len(recs)})
+    data = spcall('notes_get', (note_id,), )
+    response = build_json(data)
+    if note_id and len(response['entries']) == 0:
+        """ Note ID does not exist """
+        raise InvalidRequest('Does not exist', status_code=404)
+    return jsonify(response)
 
 
 @app.route('/notes/', methods=['POST'])
@@ -164,54 +162,35 @@ def notes_upsert(note_id=None):
     data = json.loads(request.data)
 
     if clean_form(data):
-
         response = spcall('notes_upsert', (
             note_id,
-            data['name'],
+            data['note_name'],
             data['description'],
-            str(data['date_added']),),)
+            str(data['date_added'],)))
 
         if note_id and response[0][0] == 'error' and request.method == "PUT":
             raise InvalidRequest('Does not exist', status_code=404)
 
-        if 'Error' in str(response[0][0]):
-            return jsonify({'status': 'error', 'message': response[0][0]})
+        json_dict = build_json(response)
 
-        recs = []
-        for r in response:
-            recs.append({"note_id": r[0], "name": r[1], "description": r[2], "date_added": str(r[3])})
+        status_code = 200
+        if not note_id:
+            status_code = 201
 
-            status_code = 200
-            if not note_id:
-                status_code = 201
-
-            return jsonify({'status': 'OK', 'message': 'OK', 'entries': recs, 'count': len(recs)}), status_code
+        return jsonify(json_dict), status_code
     else:
         raise InvalidForm('Some fields have error values', status_code=422)
 
-
-@app.route('/notes/<note_id>/', methods=['DELETE'])
-def notes_delete(note_id=None):
-    response = spcall('notes_delete', (note_id,))
-    if 'Error' in str(response[0][0]):
-        return jsonify({'status': 'error', 'message': response[0][0]})
-    return jsonify({'status': 'OK', 'message': response[0][0]})
-
-
-@app.after_request
-def add_cors(resp):
-    resp.headers['Access-Control-Allow-Origin'] = flask.request.headers.get('Origin', '*')
-    resp.headers['Access-Control-Allow-Credentials'] = True
-    resp.headers['Access-Control-Allow-Methods'] = 'POST, OPTIONS, GET, PUT, DELETE'
-    resp.headers['Access-Control-Allow-Headers'] = flask.request.headers.get('Access-Control-Request-Headers',
-                                                                             'Authorization')
-    # set low for debugging
-
-    if app.debug:
-        resp.headers["Access-Control-Max-Age"] = '1'
-    return resp
+#
+# @app.route('/notes/<note_id>/', methods=['DELETE'])
+# def notes_delete(note_id=None):
+#     response = spcall('notes_delete', (note_id,))
+#     if 'Error' in str(response[0][0]):
+#         return jsonify({'status': 'error', 'message': response[0][0]})
+#     return jsonify({'status': 'OK', 'message': response[0][0]})
 
 
+# Handler
 
 @app.errorhandler(InvalidForm)
 def handle_invalid_form(error):
@@ -232,6 +211,20 @@ def handle_duplicate_row(error):
     response = jsonify(error.to_dict())
     response.status_code = error.status_code
     return response
+
+
+@app.after_request
+def add_cors(resp):
+    resp.headers['Access-Control-Allow-Origin'] = flask.request.headers.get('Origin', '*')
+    resp.headers['Access-Control-Allow-Credentials'] = True
+    resp.headers['Access-Control-Allow-Methods'] = 'POST, OPTIONS, GET, PUT, DELETE'
+    resp.headers['Access-Control-Allow-Headers'] = flask.request.headers.get('Access-Control-Request-Headers',
+                                                                             'Authorization')
+    # set low for debugging
+
+    if app.debug:
+        resp.headers["Access-Control-Max-Age"] = '1'
+    return resp
 
 
 if __name__ == '__main__':
