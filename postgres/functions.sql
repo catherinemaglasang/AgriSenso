@@ -158,20 +158,34 @@ CREATE OR REPLACE FUNCTION videos_upsert(IN par_video_id INT, IN par_video_name 
   RETURNS TEXT AS $$
 DECLARE
   loc_response TEXT;
+  loc_out TEXT;
 BEGIN
 
   IF par_video_id ISNULL
   THEN
-    INSERT INTO videos(video_name, date_added)
-    VALUES (par_video_name, par_date_added);
-    loc_response = 'OK';
+    INSERT INTO videos (video_name, date_added)
+    VALUES (par_video_name, par_date_added)
+    RETURNING video_id
+      INTO loc_response;
   ELSE
-    UPDATE videos
-    SET video_name = par_video_name, date_added = par_date_added
-    WHERE video_id = par_video_id;
-    loc_response = 'OK';
-  END IF;
 
+    SELECT INTO loc_out video_id
+    FROM videos
+    WHERE video_id = par_video_id;
+
+    IF loc_out ISNULL
+    THEN
+      loc_response = 'error';
+    ELSE
+
+      UPDATE videos
+      SET video_name = par_video_name, date_added = par_date_added
+      WHERE video_id = par_video_id;
+      loc_response = par_video_id;
+
+    END IF;
+
+  END IF;
   RETURN loc_response;
 END;
 $$ LANGUAGE 'plpgsql';

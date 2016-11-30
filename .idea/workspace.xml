@@ -5,6 +5,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.py" afterPath="$PROJECT_DIR$/app.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/postgres/functions.sql" afterPath="$PROJECT_DIR$/postgres/functions.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/infos.feature" afterPath="$PROJECT_DIR$/test/infos.feature" />
     </list>
     <ignored path="AgriSenso.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,19 +27,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.88408643">
-              <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="98" column="30" selection-start-line="98" selection-start-column="30" selection-end-line="98" selection-end-column="30" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
-                <element signature="e#2888#3249#0" expanded="false" />
-                <element signature="e#3441#4411#0" expanded="false" />
-                <element signature="e#4604#4982#0" expanded="false" />
-                <element signature="e#5179#6078#0" expanded="false" />
-                <element signature="e#6202#6456#0" expanded="false" />
-                <element signature="e#6584#7215#0" expanded="false" />
+                <element signature="e#4015#4376#0" expanded="false" />
+                <element signature="e#4568#5538#0" expanded="false" />
+                <element signature="e#5731#6109#0" expanded="false" />
+                <element signature="e#6306#7205#0" expanded="false" />
+                <element signature="e#7329#7583#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -47,8 +47,18 @@
       <file leaf-file-name="functions.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/postgres/functions.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.930233">
-              <caret line="116" column="20" selection-start-line="116" selection-start-column="20" selection-end-line="116" selection-end-column="20" />
+            <state vertical-scroll-proportion="-2.8837209">
+              <caret line="89" column="9" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="videos.feature" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/videos.feature">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.82636654">
+              <caret line="66" column="56" selection-start-line="66" selection-start-column="56" selection-end-line="66" selection-end-column="56" />
               <folding />
             </state>
           </provider>
@@ -58,17 +68,7 @@
         <entry file="file://$PROJECT_DIR$/test/infos.feature">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="63" column="28" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="notes.feature" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/notes.feature">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="46" column="49" selection-start-line="0" selection-start-column="0" selection-end-line="67" selection-end-column="59" />
+              <caret line="0" column="35" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -99,9 +99,10 @@
         <option value="$PROJECT_DIR$/utils.py" />
         <option value="$PROJECT_DIR$/test/products.feature" />
         <option value="$PROJECT_DIR$/test/notes.feature" />
+        <option value="$PROJECT_DIR$/app.py" />
         <option value="$PROJECT_DIR$/postgres/functions.sql" />
         <option value="$PROJECT_DIR$/test/infos.feature" />
-        <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/test/videos.feature" />
       </list>
     </option>
   </component>
@@ -410,7 +411,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3081862" sideWeight="0.7207744" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981017" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17357911" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -467,12 +468,11 @@
           <caret line="42" column="40" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
-            <element signature="e#2888#3249#0" expanded="false" />
-            <element signature="e#3441#4411#0" expanded="false" />
-            <element signature="e#4604#4982#0" expanded="false" />
-            <element signature="e#5179#6078#0" expanded="false" />
-            <element signature="e#6202#6456#0" expanded="false" />
-            <element signature="e#6584#7215#0" expanded="false" />
+            <element signature="e#4015#4376#0" expanded="false" />
+            <element signature="e#4568#5538#0" expanded="false" />
+            <element signature="e#5731#6109#0" expanded="false" />
+            <element signature="e#6306#7205#0" expanded="false" />
+            <element signature="e#7329#7583#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -543,12 +543,11 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
-            <element signature="e#2888#3249#0" expanded="false" />
-            <element signature="e#3441#4411#0" expanded="false" />
-            <element signature="e#4604#4982#0" expanded="false" />
-            <element signature="e#5179#6078#0" expanded="false" />
-            <element signature="e#6202#6456#0" expanded="false" />
-            <element signature="e#6584#7215#0" expanded="false" />
+            <element signature="e#4015#4376#0" expanded="false" />
+            <element signature="e#4568#5538#0" expanded="false" />
+            <element signature="e#5731#6109#0" expanded="false" />
+            <element signature="e#6306#7205#0" expanded="false" />
+            <element signature="e#7329#7583#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -647,18 +646,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="98" column="30" selection-start-line="98" selection-start-column="30" selection-end-line="98" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+            <element signature="e#4015#4376#0" expanded="false" />
+            <element signature="e#4568#5538#0" expanded="false" />
+            <element signature="e#5731#6109#0" expanded="false" />
+            <element signature="e#6306#7205#0" expanded="false" />
+            <element signature="e#7329#7583#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/postgres/functions.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.930233">
-          <caret line="116" column="20" selection-start-line="116" selection-start-column="20" selection-end-line="116" selection-end-column="20" />
+        <state vertical-scroll-proportion="-2.8837209">
+          <caret line="89" column="9" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/notes.feature">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="49" selection-start-line="0" selection-start-column="0" selection-end-line="67" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.028938906">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -666,24 +680,16 @@
     <entry file="file://$PROJECT_DIR$/test/infos.feature">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="28" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+          <caret line="0" column="35" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
+    <entry file="file://$PROJECT_DIR$/test/videos.feature">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.88408643">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-            <element signature="e#2888#3249#0" expanded="false" />
-            <element signature="e#3441#4411#0" expanded="false" />
-            <element signature="e#4604#4982#0" expanded="false" />
-            <element signature="e#5179#6078#0" expanded="false" />
-            <element signature="e#6202#6456#0" expanded="false" />
-            <element signature="e#6584#7215#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.82636654">
+          <caret line="66" column="56" selection-start-line="66" selection-start-column="56" selection-end-line="66" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>

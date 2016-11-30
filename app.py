@@ -94,6 +94,46 @@ def attributes_upsert(info_id=None):
         raise InvalidForm('Some fields have error values', status_code=422)
 
 
+@app.route('/videos/', methods=['GET'])
+@app.route('/videos/<video_id>/', methods=['GET'])
+def videos_get(video_id=None):
+    data = spcall('videos_get', (video_id,), )
+
+    response = build_json(data)
+
+    if video_id and len(response['entries']) == 0:
+        """ Product ID does not exist """
+        raise InvalidRequest('Does not exist', status_code=404)
+
+    return jsonify(response)
+
+
+@app.route('/videos/', methods=['POST'])
+@app.route('/videos/<video_id>/', methods=['PUT'])
+def videos_upsert(video_id=None):
+    data = json.loads(request.data)
+
+    if clean_form(data):
+
+        response = spcall('videos_upsert', (
+            video_id,
+            data['video_name'],
+            str(data['date_added'],)))
+
+        if video_id and response[0][0] == 'error' and request.method == "PUT":
+            raise InvalidRequest('Does not exist', status_code=404)
+
+        json_dict = build_json(response)
+
+        status_code = 200
+        if not video_id:
+            status_code = 201
+
+        return jsonify(json_dict), status_code
+    else:
+        raise InvalidForm('Some fields have error values', status_code=422)
+
+
 @app.route('/products/<product_id>/infos/', methods=['GET'])
 @app.route('/products/<product_id>/infos/<info_id>/', methods=['GET'])
 def product_infos_get(product_id, info_id=None):
