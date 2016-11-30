@@ -58,7 +58,7 @@ CREATE OR REPLACE FUNCTION infos_upsert(IN par_info_id INT, IN par_what TEXT,
                                             IN par_when TEXT, IN par_where TEXT, IN par_how TEXT,
                                             IN par_date_added  TIMESTAMP)
   RETURNS TEXT AS $$
-DECLARE
+DECLAREproducts_get
   loc_response TEXT;
 BEGIN
 

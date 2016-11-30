@@ -124,6 +124,6 @@ def build_json(response):
         return {'status': 'error', 'message': response[0][0]}
 
     for row in response:
-        entries.append(dict(row))
+        entries.append(row)
 
     return {'status': 'OK', 'message': 'OK', 'entries': entries, 'count': len(entries)}

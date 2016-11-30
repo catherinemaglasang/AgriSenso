@@ -1,7 +1,7 @@
 import flask
 import json
 from flask import Flask, jsonify, request
-from utils import spcall, InvalidRequest, clean_form, InvalidForm
+from utils import spcall, InvalidRequest, clean_form, InvalidForm, build_json, DuplicateRow
 
 app = Flask(__name__)
 
@@ -14,18 +14,14 @@ def index():
 @app.route('/products/', methods=['GET'])
 @app.route('/products/<product_id>/', methods=['GET'])
 def products_get(product_id=None):
-    response = spcall('products_get', (product_id,),)
-    if 'Error' in str(response[0][0]):
-        return jsonify({'status': 'error', 'message': response[0][0]})
+    data = spcall('products_get', (product_id,), )
+    response = build_json(data)
 
-    recs = []
-    for r in response:
-        recs.append({"product_id": r[0], "product_name": r[1], "description": r[2], "price": r[3], "date_added": str(r[4])})
-
-    if product_id and len(recs) == 0:
+    if product_id and len(response['entries']) == 0:
         """ Product ID does not exist """
         raise InvalidRequest('Does not exist', status_code=404)
-    return jsonify({'status': 'OK', 'message': 'OK', 'entries': recs, 'count': len(recs)})
+
+    return jsonify(response)
 
 
 @app.route('/products/', methods=['POST'])
@@ -34,29 +30,23 @@ def products_upsert(product_id=None):
     data = json.loads(request.data)
 
     if clean_form(data):
-
         response = spcall('products_upsert', (
             product_id,
             data['product_name'],
             data['description'],
             data['price'],
-            str(data['date_added']),), True)
+            str(data['date_added'],)))
 
         if product_id and response[0][0] == 'error' and request.method == "PUT":
             raise InvalidRequest('Does not exist', status_code=404)
 
-        if 'Error' in str(response[0][0]):
-            return jsonify({'status': 'error', 'message': response[0][0]})
+        json_dict = build_json(response)
 
-        recs = []
-        for r in response:
-            recs.append({'product_id': r[0], 'product_name': r[1]})
+        status_code = 200
+        if not product_id:
+            status_code = 201
 
-            status_code = 200
-            if not product_id:
-                status_code = 201
-
-            return jsonify({'status': 'OK', 'message': 'OK', 'entries': recs, 'count': len(recs)}), status_code
+        return jsonify(json_dict), status_code
     else:
         raise InvalidForm('Some fields have error values', status_code=422)
 
@@ -220,6 +210,28 @@ def add_cors(resp):
     if app.debug:
         resp.headers["Access-Control-Max-Age"] = '1'
     return resp
+
+
+
+@app.errorhandler(InvalidForm)
+def handle_invalid_form(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
+
+
+@app.errorhandler(InvalidRequest)
+def handle_invalid_request(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
+
+
+@app.errorhandler(DuplicateRow)
+def handle_duplicate_row(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
 
 
 if __name__ == '__main__':

@@ -52,10 +52,7 @@ def given_i_have_the_following_data(step):
 
 @step('I save the data')
 def i_post_to_the_url_url(step):
-    print world.data
-    print world.resource
     world.response = world.browser.post(world.resource, data=json.dumps(world.data))
-    print world.response
     world.response_data = json.loads(world.response.data)
 
 
