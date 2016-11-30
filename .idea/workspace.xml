@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9cdb47b0-32a5-489d-b4d8-2702b26f9d32" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.py" afterPath="$PROJECT_DIR$/app.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/postgres/functions.sql" afterPath="$PROJECT_DIR$/postgres/functions.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/postgres/tables.sql" afterPath="$PROJECT_DIR$/postgres/tables.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/product_infos.feature" afterPath="$PROJECT_DIR$/test/product_infos.feature" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/videos.feature" afterPath="$PROJECT_DIR$/test/videos.feature" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/product_videos.feature" afterPath="$PROJECT_DIR$/test/product_videos.feature" />
     </list>
     <ignored path="AgriSenso.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,7 +32,7 @@
         <entry file="file://$PROJECT_DIR$/app.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+              <caret line="201" column="24" selection-start-line="201" selection-start-column="24" selection-end-line="201" selection-end-column="24" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
                 <element signature="e#833#1504#0" expanded="false" />
@@ -40,10 +40,9 @@
                 <element signature="e#2026#2700#0" expanded="false" />
                 <element signature="e#2829#3092#0" expanded="false" />
                 <element signature="e#3225#3827#0" expanded="false" />
-                <element signature="e#5151#5529#0" expanded="false" />
-                <element signature="e#5726#6625#0" expanded="false" />
-                <element signature="e#6749#7003#0" expanded="false" />
-                <element signature="e#7131#7762#0" expanded="false" />
+                <element signature="e#4015#4305#0" expanded="false" />
+                <element signature="e#6229#6483#0" expanded="false" />
+                <element signature="e#6611#7242#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -52,8 +51,8 @@
       <file leaf-file-name="functions.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/postgres/functions.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.7209303">
-              <caret line="151" column="25" selection-start-line="151" selection-start-column="25" selection-end-line="151" selection-end-column="25" />
+            <state vertical-scroll-proportion="-5.5581393">
+              <caret line="242" column="0" selection-start-line="216" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -72,18 +71,28 @@
       <file leaf-file-name="tables.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/postgres/tables.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.5714285">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state vertical-scroll-proportion="-2.0714285">
+              <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="product_infos.feature" pinned="false" current-in-tab="true">
+      <file leaf-file-name="product_videos.feature" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/product_videos.feature">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4647619">
+              <caret line="35" column="49" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="product_infos.feature" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/product_infos.feature">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.77310926">
-              <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -126,11 +135,12 @@
         <option value="$PROJECT_DIR$/test/products.feature" />
         <option value="$PROJECT_DIR$/test/notes.feature" />
         <option value="$PROJECT_DIR$/test/infos.feature" />
-        <option value="$PROJECT_DIR$/postgres/functions.sql" />
-        <option value="$PROJECT_DIR$/app.py" />
-        <option value="$PROJECT_DIR$/postgres/tables.sql" />
         <option value="$PROJECT_DIR$/test/videos.feature" />
         <option value="$PROJECT_DIR$/test/product_infos.feature" />
+        <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/postgres/functions.sql" />
+        <option value="$PROJECT_DIR$/postgres/tables.sql" />
+        <option value="$PROJECT_DIR$/test/product_videos.feature" />
       </list>
     </option>
   </component>
@@ -453,7 +463,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3081862" sideWeight="0.7207744" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24981017" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.041474655" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14900154" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -517,10 +527,9 @@
             <element signature="e#2026#2700#0" expanded="false" />
             <element signature="e#2829#3092#0" expanded="false" />
             <element signature="e#3225#3827#0" expanded="false" />
-            <element signature="e#5151#5529#0" expanded="false" />
-            <element signature="e#5726#6625#0" expanded="false" />
-            <element signature="e#6749#7003#0" expanded="false" />
-            <element signature="e#7131#7762#0" expanded="false" />
+            <element signature="e#4015#4305#0" expanded="false" />
+            <element signature="e#6229#6483#0" expanded="false" />
+            <element signature="e#6611#7242#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -596,10 +605,9 @@
             <element signature="e#2026#2700#0" expanded="false" />
             <element signature="e#2829#3092#0" expanded="false" />
             <element signature="e#3225#3827#0" expanded="false" />
-            <element signature="e#5151#5529#0" expanded="false" />
-            <element signature="e#5726#6625#0" expanded="false" />
-            <element signature="e#6749#7003#0" expanded="false" />
-            <element signature="e#7131#7762#0" expanded="false" />
+            <element signature="e#4015#4305#0" expanded="false" />
+            <element signature="e#6229#6483#0" expanded="false" />
+            <element signature="e#6611#7242#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -689,41 +697,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/postgres/functions.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.7209303">
-          <caret line="151" column="25" selection-start-line="151" selection-start-column="25" selection-end-line="151" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/postgres/tables.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5714285">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-            <element signature="e#833#1504#0" expanded="false" />
-            <element signature="e#1633#1893#0" expanded="false" />
-            <element signature="e#2026#2700#0" expanded="false" />
-            <element signature="e#2829#3092#0" expanded="false" />
-            <element signature="e#3225#3827#0" expanded="false" />
-            <element signature="e#5151#5529#0" expanded="false" />
-            <element signature="e#5726#6625#0" expanded="false" />
-            <element signature="e#6749#7003#0" expanded="false" />
-            <element signature="e#7131#7762#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/steps.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -744,8 +717,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/product_infos.feature">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.77310926">
-          <caret line="50" column="26" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="201" column="24" selection-start-line="201" selection-start-column="24" selection-end-line="201" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+            <element signature="e#833#1504#0" expanded="false" />
+            <element signature="e#1633#1893#0" expanded="false" />
+            <element signature="e#2026#2700#0" expanded="false" />
+            <element signature="e#2829#3092#0" expanded="false" />
+            <element signature="e#3225#3827#0" expanded="false" />
+            <element signature="e#4015#4305#0" expanded="false" />
+            <element signature="e#6229#6483#0" expanded="false" />
+            <element signature="e#6611#7242#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/postgres/functions.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.5581393">
+          <caret line="242" column="0" selection-start-line="216" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/postgres/tables.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.0714285">
+          <caret line="26" column="18" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/product_videos.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4647619">
+          <caret line="35" column="49" selection-start-line="35" selection-start-column="49" selection-end-line="35" selection-end-column="49" />
           <folding />
         </state>
       </provider>

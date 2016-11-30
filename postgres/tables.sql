@@ -31,7 +31,8 @@ CREATE TABLE videos (
 CREATE TABLE product_videos (
   product_video_id SERIAL NOT NULL PRIMARY KEY,
   video_id INT,
-  product_id INT
+  product_id INT,
+  date_added TIMESTAMP
 );
 
 CREATE TABLE notes(

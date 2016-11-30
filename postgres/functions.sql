@@ -214,20 +214,26 @@ $$ LANGUAGE 'plpgsql';
 --
 --
 --
-CREATE OR REPLACE FUNCTION product_videos_upsert(IN par_product_id INT, IN par_video_id INT)
+CREATE OR REPLACE FUNCTION product_videos_upsert(IN par_video_id INT, IN par_product_id INT, IN par_date_added TIMESTAMP )
   RETURNS TEXT AS $$
 DECLARE
   loc_response TEXT;
+  loc_id       INT;
 BEGIN
+
+  SELECT INTO loc_id video_id
+  FROM product_videos
+  WHERE video_id = par_video_id AND product_id = par_product_id;
+
   IF par_video_id ISNULL
   THEN
-    INSERT INTO product_videos(product_id, video_id)
-    VALUES (par_product_id, par_video_id);
+    INSERT INTO product_videos (video_id, product_id, date_added)
+    VALUES (par_video_id, par_product_id, par_date_added);
     loc_response = 'OK';
   ELSE
     UPDATE product_videos
-    SET video_id = par_video_id
-    WHERE video_id = par_video_id;
+    SET date_added = par_date_added
+    WHERE video_id = par_video_id AND product_id = par_product_id;
     loc_response = 'OK';
   END IF;
 
