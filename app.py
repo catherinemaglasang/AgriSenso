@@ -243,14 +243,104 @@ def notes_upsert(note_id=None):
     else:
         raise InvalidForm('Some fields have error values', status_code=422)
 
-#
-# @app.route('/notes/<note_id>/', methods=['DELETE'])
-# def notes_delete(note_id=None):
-#     response = spcall('notes_delete', (note_id,))
-#     if 'Error' in str(response[0][0]):
-#         return jsonify({'status': 'error', 'message': response[0][0]})
-#     return jsonify({'status': 'OK', 'message': response[0][0]})
 
+@app.route('/sellers/', methods=['GET'])
+@app.route('/sellers/<seller_id>/', methods=['GET'])
+def getseller(seller_id=None):
+    data = spcall('getsellers', (seller_id,), )
+    response = build_json(data)
+
+    if seller_id and len(response['entries']) == 0:
+        """ Seller ID does not exist """
+        raise InvalidRequest('Does not exist', status_code=404)
+    return jsonify(response)
+
+@app.route('/sellers/', methods=['POST'])
+@app.route('/sellers/<seller_id>/', methods=['PUT'])
+def seller_upsert(seller_id=None):
+    data = json.loads(request.data)
+    if clean_form(data):
+        response = spcall('upsert_seller', (
+            seller_id,
+            data['first_name'],
+            data['middle_name'],
+            data['last_name'],
+            data['email'],
+            data['age'],
+            data['contact_number'],
+            data['address'],))
+        if seller_id and response[0][0] == 'error' and request.method == "PUT":
+            raise InvalidRequest('Does not exist', status_code=404)
+        json_dict = build_json(response)
+        status_code = 200
+        if not seller_id:
+            status_code = 201
+
+        return jsonify(json_dict), status_code
+    else:
+        raise InvalidForm('Some fields have error values', status_code=422)
+
+
+@app.route('/buyers/', methods=['GET'])
+@app.route('/buyers/<buyer_id>/', methods=['GET'])
+def getbuyer(buyer_id=None):
+    data = spcall('getbuyers', (buyer_id,), )
+    response = build_json(data)
+
+    if buyer_id and len(response['entries']) == 0:
+        """ Buyer ID does not exist """
+        raise InvalidRequest('Does not exist', status_code=404)
+    return jsonify(response)
+
+@app.route('/buyers/', methods=['POST'])
+@app.route('/buyers/<buyer_id>/', methods=['PUT'])
+def buyer_upsert(buyer_id=None):
+    data = json.loads(request.data)
+
+    if clean_form(data):
+        response = spcall('upsert_buyer', (
+            seller_id,
+            data['first_name'],
+            data['middle_name'],
+            data['last_name'],
+            data['email'],
+            data['age'],
+            data['contact_number'],
+            data['address'],))
+        if buyer_id and response[0][0] == 'error' and request.method == "PUT":
+            raise InvalidRequest('Does not exist', status_code=404)
+        json_dict = build_json(response)
+        status_code = 200
+        if not buyer_id:
+            status_code = 201
+
+        return jsonify(json_dict), status_code
+    else:
+        raise InvalidForm('Some fields have error values', status_code=422)
+
+
+@app.route('/contacts/', methods=['POST'])
+@app.route('/contacts/', methods=['GET'])
+def getcontacts():
+    res = spcall('getcontact', ())
+
+    if 'Error' in str(res[0][0]):
+        return jsonify({'status': 'Error', 'message': res[0][0]})
+
+    recs = []
+    for r in res:
+        recs.append({"contact_id": str(r[0]), "c_number": str(r[1]), "name": str(r[2]), "l_name": str(r[3])})
+    return jsonify({'status': 'OK', 'entries': recs, 'count': len(recs)})
+
+@app.route('/contacts/<contact_id>/', methods=['GET'])
+def getcontact_id(contact_id):
+    res = spcall('getcontact_id', [contact_id])
+
+    if 'Error' in str(res[0][0]):
+        return jsonify({'status': 'Error', 'message': res[0][0]})
+    rec = res[0]
+
+    return jsonify({"contact_id": str(contact_id), "c_number": str(rec[0]), "name": str(rec[1]), "l_name": str(rec[2])})
 
 # Handler
 
