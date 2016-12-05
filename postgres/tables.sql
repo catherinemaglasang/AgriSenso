@@ -40,7 +40,7 @@ CREATE TABLE notes(
   note_name TEXT,
   description TEXT,
   date_added TIMESTAMP
-)
+);
 
 
 CREATE TABLE Seller (
