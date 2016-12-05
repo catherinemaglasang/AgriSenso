@@ -299,7 +299,7 @@ def buyer_upsert(buyer_id=None):
 
     if clean_form(data):
         response = spcall('upsert_buyer', (
-            seller_id,
+            buyer_id,
             data['first_name'],
             data['middle_name'],
             data['last_name'],
@@ -320,27 +320,39 @@ def buyer_upsert(buyer_id=None):
 
 
 @app.route('/contacts/', methods=['POST'])
+@app.route('/contacts/<contact_id>/', methods=['PUT'])
+def contact_upsert(contact_id=None):
+    data = json.loads(request.data)
+    if clean_form(data):
+        response = spcall('upsert_contact', (
+            contact_id,
+            data['c_number'],
+            data['name'],
+            data['l_name'],))
+
+        if contact_id and response[0][0] == 'error' and request.method == "PUT":
+            raise InvalidRequest('Does not exist', status_code=404)
+        json_dict = build_json(response)
+        status_code = 200
+        if not contact_id:
+            status_code = 201
+
+        return jsonify(json_dict), status_code
+    else:
+        raise InvalidForm('Some fields have error values', status_code=422)
+
+
 @app.route('/contacts/', methods=['GET'])
-def getcontacts():
-    res = spcall('getcontact', ())
-
-    if 'Error' in str(res[0][0]):
-        return jsonify({'status': 'Error', 'message': res[0][0]})
-
-    recs = []
-    for r in res:
-        recs.append({"contact_id": str(r[0]), "c_number": str(r[1]), "name": str(r[2]), "l_name": str(r[3])})
-    return jsonify({'status': 'OK', 'entries': recs, 'count': len(recs)})
-
 @app.route('/contacts/<contact_id>/', methods=['GET'])
-def getcontact_id(contact_id):
-    res = spcall('getcontact_id', [contact_id])
+def get_contact(contact_id=None):
+    data = spcall('getcontacts', (contact_id,), )
+    response = build_json(data)
 
-    if 'Error' in str(res[0][0]):
-        return jsonify({'status': 'Error', 'message': res[0][0]})
-    rec = res[0]
+    if contact_id and len(response['entries']) == 0:
+        """ Contact ID does not exist """
+        raise InvalidRequest('Does not exist', status_code=404)
+    return jsonify(response)
 
-    return jsonify({"contact_id": str(contact_id), "c_number": str(rec[0]), "name": str(rec[1]), "l_name": str(rec[2])})
 
 # Handler
 
