@@ -380,9 +380,7 @@ create or replace function upsert_seller(IN par_seller_id INT, IN par_first_name
   END;
   $$ LANGUAGE 'plpgsql';
 
-
-
-create or replace function getsellers(In par_seller_id INT) RETURNS SETOF RECORD AS
+create or replace function getsellers(In par_seller_id INT) RETURNS SETOF Seller AS
 
 $$
   BEGIN
@@ -395,35 +393,6 @@ $$
   END IF;
 END;
 $$ LANGUAGE 'plpgsql';
-
---select * from getsellers();
-
--- create or replace function getseller_id(IN par_seller_id INT, OUT Varchar, OUT Varchar, OUT Varchar, OUT Varchar, OUT INT,
---                                         OUT Varchar, OUT Varchar) RETURNS SETOF RECORD AS
-
--- $$
---   SELECT first_name, middle_name, last_name, email, age, contact_number, address FROM Seller WHERE seller_id = par_seller_id;
--- $$
---   LANGUAGE 'sql';
-
--- create or replace function updateseller(par_seller_id INT, par_first_name Varchar, par_middle_name Varchar, par_last_name Varchar, par_email Varchar, par_age INT,
---                                         par_contact_number Varchar, par_address Varchar) returns void AS
-
--- $$
---   UPDATE Seller
---   SET
---     first_name = par_first_name,
---     middle_name = par_middle_name,
---     last_name = par_last_name,
---     email = par_email,
---     age = par_age,
---     contact_number = par_contact_number,
---     address = par_address
-
---   WHERE seller_id = par_seller_id;
-
--- $$
---   LANGUAGE 'sql';
 
 create or replace function upsert_buyer(IN par_buyer_id INT, IN par_first_name Varchar, IN par_middle_name Varchar, IN par_last_name Varchar, IN par_email Varchar,
                   In par_age INT, IN par_contact_number Varchar, IN par_address Varchar)
@@ -464,7 +433,7 @@ create or replace function upsert_buyer(IN par_buyer_id INT, IN par_first_name V
 
 --select upsert_buyer('Catherine', 'Basay', 'Maglasang', 'maglasangcatherine12@gmail.com', '19', '09252979173', 'Abuno, Iligan City');
 
-create or replace function getbuyers(In par_buyer_id INT) RETURNS SETOF RECORD AS
+create or replace function getbuyers(In par_buyer_id INT) RETURNS SETOF Buyer AS
 
 $$
   BEGIN
@@ -478,94 +447,58 @@ $$
 END;
 $$ LANGUAGE 'plpgsql';
 
--- create or replace function getbuyers(OUT INT, OUT Varchar, OUT Varchar, OUT Varchar, OUT Varchar, OUT INT, OUT Varchar, OUT Varchar) RETURNS SETOF RECORD AS
-
--- $$
---   SELECT buyer_id, first_name, middle_name, last_name, email, age, contact_number, address FROM Buyer;
--- $$
---   LANGUAGE 'sql';
-
--- --select * from getbuyers();
-
--- create or replace function getbuyer_id(IN par_buyer_id INT, OUT Varchar, OUT Varchar, OUT Varchar, OUT Varchar, OUT INT, OUT Varchar, OUT Varchar) RETURNS SETOF RECORD AS
-
--- $$
---   SELECT first_name, middle_name, last_name, email, age, contact_number, address FROM Buyer WHERE buyer_id = par_buyer_id;
--- $$
---   LANGUAGE 'sql';
-
--- create or replace function updatebuyer(par_buyer_id INT, par_first_name Varchar, par_middle_name Varchar, par_last_name Varchar, par_email Varchar, par_age INT,
---                                         par_contact_number Varchar, par_address Varchar) returns void AS
-
--- $$
---   UPDATE Buyer
---   SET
---     first_name = par_first_name,
---     middle_name = par_middle_name,
---     last_name = par_last_name,
---     email = par_email,
---     age = par_age,
---     contact_number = par_contact_number,
---     address = par_address
-
---   WHERE buyer_id = par_buyer_id;
-
--- $$
---   LANGUAGE 'sql';
-
-
-  CREATE TABLE contacts (
-  contact_id SERIAL PRIMARY KEY,
-  c_number Varchar(50),
-  name Varchar(50),
-  l_name Varchar(50)
-);
-
-
-create or replace function add_contact(par_c_number Varchar, par_name Varchar, par_l_name Varchar) RETURNS text AS
+create or replace function upsert_contact(IN par_contact_id INT, IN par_c_number Varchar, IN par_name Varchar, IN par_l_name Varchar)
+  returns TEXT AS
   $$
-    DECLARE
-      loc_number TEXT;
-      loc_res TEXT;
+
+  DECLARE
+    loc_response TEXT;
+    loc_out TEXT;
+
     BEGIN
-    SELECT INTO loc_number FROM contacts WHERE c_number = par_c_number;
-    if loc_number isnull THEN
-
-      if par_c_number = '' or par_name = '' or par_l_name = '' 
-        THEN loc_res = 'Error';
-
+      IF par_contact_id ISNULL
+      THEN
+        INSERT INTO contacts (c_number, name, l_name)
+        VALUES (par_c_number, par_name, par_l_name)
+        RETURNING contact_id
+          INTO loc_response;
       ELSE
-        INSERT INTO contacts(c_number, name, l_name)
-          VALUES(par_c_number, par_name, par_l_name);
-          loc_res ='OK';
-        end if;
+        SELECT INTO loc_out contact_id
+        FROM contacts
+        WHERE contact_id = par_contact_id;
 
-      ELSE
-        loc_res = 'OK';
-        end if;
+        IF loc_out ISNULL
+        THEN
+          loc_response = 'error';
+        ELSE
+          UPDATE contacts
+          SET c_number = par_c_number, name = par_name, l_name = par_l_name
+                            
+          WHERE contact_id = par_contact_id;
 
-      return loc_res;
-    END;
-$$
-  LANGUAGE 'plpgsql';
+        END IF;
+    END IF;
 
---select * from add_contact('09359145088', 'Liza', 'Soberano');
+    RETURN loc_response;
+  END;
+  $$ LANGUAGE 'plpgsql';
 
-create or replace function getcontact(OUT INT, OUT Varchar, OUT Varchar, OUT Varchar) RETURNS SETOF RECORD AS
+--select * from upsert_contact('09359145088', 'Liza', 'Soberano');
 
-$$
-  SELECT contact_id, c_number, name, l_name FROM contacts;
-$$
-  LANGUAGE 'sql';
-
---select * from getcontact();
-
-create or replace function getcontact_id(IN par_contact_id INT, OUT Varchar, OUT Varchar, OUT Varchar) RETURNS SETOF RECORD AS
+create or replace function getcontacts(In par_contact_id INT) RETURNS SETOF contacts AS
 
 $$
-  SELECT c_number, name, l_name FROM contacts WHERE contact_id = par_contact_id;
-$$
-  LANGUAGE 'sql';
+  BEGIN
+  IF par_contact_id ISNULL
+  THEN
+    RETURN QUERY SELECT * FROM contacts;
+  ELSE
+    RETURN QUERY SELECT * FROM contacts WHERE contact_id = par_contact_id;
+
+  END IF;
+END;
+$$ LANGUAGE 'plpgsql';
+
 -- create or replace function sellercontacts(par_buyer_name Varchar, par_buyer_contact_number Varchar) RETURNS text AS
 
 -- $$

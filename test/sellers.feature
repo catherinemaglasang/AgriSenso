@@ -13,11 +13,11 @@ Feature: Handle storing, retreiving details, update details
       | url         | status_code | status | message |
       | /           | 200         | OK     | OK      |
       | /sellers/   | 200         | OK     | OK      |
-      | /sellers/2/ | 200         | OK     | OK      |
+      | /sellers/1/ | 200         | OK     | OK      |
 
 
    Scenario: Get Sellers - Success!
-    Given I access the url "/sellers/7/"
+    Given I access the url "/sellers/1/"
     Then I get a "200" response
     And I get an "OK" status
     And I get an "OK" message
@@ -56,10 +56,10 @@ Feature: Handle storing, retreiving details, update details
 
 
   Scenario: Update Seller - Success!
-    Given I have a resource with the id "8"
+    Given I have a resource with the id "1"
     And I want to update its data to the following data
       |seller_id|first_name|middle_name|last_name|email|age|contact_number|address| 
-	|8|Liza|Galabin|Buctolan|lizabuctolan@gmail.com|19|09061233822|Pualas, Tubod, LDN|
+	|1|Liza|Galabin|Buctolan|lizabuctolan@gmail.com|19|09061233822|Pualas, Tubod, LDN|
     When I update the data
     Then I get a "200" response
     And I get a field "status" containing "OK"

@@ -49,7 +49,6 @@ def i_get_a_message(step, message):
 def given_i_have_the_following_data(step):
     world.data = step.hashes[0]
 
-
 @step('I save the data')
 def i_post_to_the_url_url(step):
     world.response = world.browser.post(world.resource, data=json.dumps(world.data))
@@ -63,6 +62,13 @@ def i_post_the_data(step):
 def given_i_have_the_following_data(step):
     world.data = {}
 
+@step('I have the ff data')
+def i_post_the_data(step):
+    world.data = step.hashes[0]
+
+@step("I have a form with the ff data")
+def form_with_data(step):
+    world.data = step.hashes[0]
 
 @step('I have a field "(.*)" with value "(.*)"')
 def i_have_a_field_with_value(step, field, field_value):
