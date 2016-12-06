@@ -241,6 +241,12 @@ hr {
     color: #5AC58E;
     padding: 15px;
 }
+.navbar-main .navbar-nav > li > select {
+    color: #5AC58E;
+    padding: 15px;
+    border-color: #fff;
+    background-color: white;
+}
 
 @media (min-width: 992px) {
     .navbar-main .dropdown:hover > .dropdown-menu {

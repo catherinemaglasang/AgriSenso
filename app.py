@@ -270,6 +270,7 @@ def getseller(seller_id=None):
         raise InvalidRequest('Does not exist', status_code=404)
     return jsonify(response)
 
+
 @app.route('/sellers/', methods=['POST'])
 @app.route('/sellers/<seller_id>/', methods=['PUT'])
 def seller_upsert(seller_id=None):
@@ -307,6 +308,7 @@ def getbuyer(buyer_id=None):
         """ Buyer ID does not exist """
         raise InvalidRequest('Does not exist', status_code=404)
     return jsonify(response)
+
 
 @app.route('/buyers/', methods=['POST'])
 @app.route('/buyers/<buyer_id>/', methods=['PUT'])
