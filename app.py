@@ -6,9 +6,24 @@ from utils import spcall, InvalidRequest, clean_form, InvalidForm, build_json, D
 app = Flask(__name__)
 
 
-@app.route('/', methods=['GET'])
-def index():
-    return jsonify({"status": "OK", "message": "OK"})
+# @app.route('/', methods=['GET'])
+# def index():
+#     return jsonify({"status": "OK", "message": "OK"})
+
+
+# @app.route('/login/', methods=['POST'])
+# def loginseller():
+#     data = request.json
+
+#     res = spcall("loginauth", (data['email'], data['password']))
+
+#     if res == 'ERROR':
+#         status = False
+#         return jsonify({'status': status, 'message': 'error'})
+#     else:
+#         status = True
+#         token = jwt.dumps({'user': data['email']})
+#         return jsonify({'status': status, 'token': token, 'seller_id': res, 'message': 'success'})
 
 
 @app.route('/products/', methods=['GET'])
@@ -266,6 +281,7 @@ def seller_upsert(seller_id=None):
             data['middle_name'],
             data['last_name'],
             data['email'],
+            data['password'],
             data['age'],
             data['contact_number'],
             data['address'],))
@@ -304,6 +320,7 @@ def buyer_upsert(buyer_id=None):
             data['middle_name'],
             data['last_name'],
             data['email'],
+            data['password'],
             data['age'],
             data['contact_number'],
             data['address'],))
@@ -352,6 +369,7 @@ def get_contact(contact_id=None):
         """ Contact ID does not exist """
         raise InvalidRequest('Does not exist', status_code=404)
     return jsonify(response)
+
 
 
 # Handler
