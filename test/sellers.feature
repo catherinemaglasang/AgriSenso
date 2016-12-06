@@ -31,8 +31,8 @@ Feature: Handle storing, retreiving details, update details
    Scenario: Add seller - Success!
 
 	Given I have the ff data
-	|seller_id|first_name|middle_name|last_name|email|age|contact_number|address| 
-	|8|Marjorie|Galabin|Buctolan|marjbuctolan@gmail.com|19|09061233822|Pualas, Tubod, LDN|
+	|seller_id|first_name|middle_name|last_name|email|password|age|contact_number|address| 
+	|1|Marjorie|Galabin|Buctolan|marjbuctolan@gmail.com|asdasd|19|09061233822|Pualas, Tubod, LDN|
 	When I save the data
 	Then I get a "201" response
 	And I get a field "status" containing "OK"
@@ -46,6 +46,7 @@ Feature: Handle storing, retreiving details, update details
     And I have a field "middle_name" with value ""
     And I have a field "last_name" with value ""
     And I have a field "email" with value ""
+    And I have a field "password" with value ""
     And I have a field "age" with value ""
     And I have a field "contact_number" with value ""
     And I have a field "address" with value ""
@@ -58,8 +59,8 @@ Feature: Handle storing, retreiving details, update details
   Scenario: Update Seller - Success!
     Given I have a resource with the id "1"
     And I want to update its data to the following data
-      |seller_id|first_name|middle_name|last_name|email|age|contact_number|address| 
-	|1|Liza|Galabin|Buctolan|lizabuctolan@gmail.com|19|09061233822|Pualas, Tubod, LDN|
+      |seller_id|first_name|middle_name|last_name|email|password|age|contact_number|address| 
+	|1|Liza|Galabin|Buctolan|lizabuctolan@gmail.com|asdasd|19|09061233822|Pualas, Tubod, LDN|
     When I update the data
     Then I get a "200" response
     And I get a field "status" containing "OK"
@@ -68,8 +69,8 @@ Feature: Handle storing, retreiving details, update details
    Scenario: Update Seller - Error, Info doesn't exist, raise 404
     Given I have a resource with the id "99999"
     And I want to update its data to the following data
-    |seller_id|first_name|middle_name|last_name|email|age|contact_number|address| 
-	|9999999|Marjorie|Galabin|Buctolan|marjbuctolan@gmail.com|19|09061233822|Pualas, Tubod, LDN|
+    |seller_id|first_name|middle_name|last_name|email|password|age|contact_number|address| 
+	|9999999|Marjorie|Galabin|Buctolan|marjbuctolan@gmail.com|asdasd|19|09061233822|Pualas, Tubod, LDN|
     When I update the data
     Then I get a "404" response
     And I get a field "status" containing "error"
