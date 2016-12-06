@@ -32,7 +32,7 @@ Feature: Handle storing, retreiving details, update details
 
 	Given I have the ff data
 	|seller_id|first_name|middle_name|last_name|email|password|age|contact_number|address| 
-	|8|Marjorie|Galabin|Buctolan|marjbuctolan@gmail.com|asdasd|19|09061233822|Pualas, Tubod, LDN|
+	|1|Marjorie|Galabin|Buctolan|marjbuctolan@gmail.com|asdasd|19|09061233822|Pualas, Tubod, LDN|
 	When I save the data
 	Then I get a "201" response
 	And I get a field "status" containing "OK"
