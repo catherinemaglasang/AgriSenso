@@ -6,9 +6,9 @@ from utils import spcall, InvalidRequest, clean_form, InvalidForm, build_json, D
 app = Flask(__name__)
 
 
-# @app.route('/', methods=['GET'])
-# def index():
-#     return jsonify({"status": "OK", "message": "OK"})
+@app.route('/', methods=['GET'])
+def index():
+    return jsonify({"status": "OK", "message": "OK"})
 
 
 # @app.route('/login/', methods=['POST'])
