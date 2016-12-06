@@ -341,3 +341,187 @@ $$ LANGUAGE 'plpgsql';
 --SELECT products_upsert(NULL, 'product', 'product description', '20.50', 'today');
 --SELECT product_infos_upsert('1', '1');
 --SELECT product_videos_upsert('1', '1');
+
+--
+create or replace function upsert_seller(IN par_seller_id INT, IN par_first_name Varchar, IN par_middle_name Varchar, IN par_last_name Varchar, IN par_email Varchar,
+                  In par_age INT, IN par_contact_number Varchar, IN par_address Varchar)
+  returns TEXT AS
+  $$
+
+  DECLARE
+    loc_response TEXT;
+    loc_out TEXT;
+
+    BEGIN
+      IF par_seller_id ISNULL
+      THEN
+        INSERT INTO Seller (first_name, middle_name, last_name, email, age, contact_number, address)
+        VALUES (par_first_name, par_middle_name, par_last_name, par_email, par_age, par_contact_number, par_address)
+        RETURNING seller_id
+          INTO loc_response;
+      ELSE
+        SELECT INTO loc_out seller_id
+        FROM Seller
+        WHERE seller_id = par_seller_id;
+
+        IF loc_out ISNULL
+        THEN
+          loc_response = 'error';
+        ELSE
+          UPDATE Seller
+          SET first_name = par_first_name, middle_name = par_middle_name, last_name = par_last_name,
+                            email = par_email, age = par_age, contact_number = par_contact_number, address = par_address
+          WHERE seller_id = par_seller_id;
+
+        END IF;
+    END IF;
+
+    RETURN loc_response;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+create or replace function getsellers(In par_seller_id INT) RETURNS SETOF Seller AS
+
+$$
+  BEGIN
+  IF par_seller_id ISNULL
+  THEN
+    RETURN QUERY SELECT * FROM Seller;
+  ELSE
+    RETURN QUERY SELECT * FROM Seller WHERE seller_id = par_seller_id;
+
+  END IF;
+END;
+$$ LANGUAGE 'plpgsql';
+
+create or replace function upsert_buyer(IN par_buyer_id INT, IN par_first_name Varchar, IN par_middle_name Varchar, IN par_last_name Varchar, IN par_email Varchar,
+                  In par_age INT, IN par_contact_number Varchar, IN par_address Varchar)
+  returns TEXT AS
+  $$
+
+  DECLARE
+    loc_response TEXT;
+    loc_out TEXT;
+
+    BEGIN
+      IF par_buyer_id ISNULL
+      THEN
+        INSERT INTO Buyer (first_name, middle_name, last_name, email, age, contact_number, address)
+        VALUES (par_first_name, par_middle_name, par_last_name, par_email, par_age, par_contact_number, par_address)
+        RETURNING buyer_id
+          INTO loc_response;
+      ELSE
+        SELECT INTO loc_out buyer_id
+        FROM Buyer
+        WHERE buyer_id = par_buyer_id;
+
+        IF loc_out ISNULL
+        THEN
+          loc_response = 'error';
+        ELSE
+          UPDATE Buyer
+          SET first_name = par_first_name, middle_name = par_middle_name, last_name = par_last_name,
+                            email = par_email, age = par_age, contact_number = par_contact_number, address = par_address
+          WHERE buyer_id = par_buyer_id;
+
+        END IF;
+    END IF;
+
+    RETURN loc_response;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+--select upsert_buyer('Catherine', 'Basay', 'Maglasang', 'maglasangcatherine12@gmail.com', '19', '09252979173', 'Abuno, Iligan City');
+
+create or replace function getbuyers(In par_buyer_id INT) RETURNS SETOF Buyer AS
+
+$$
+  BEGIN
+  IF par_buyer_id ISNULL
+  THEN
+    RETURN QUERY SELECT * FROM Buyer;
+  ELSE
+    RETURN QUERY SELECT * FROM Buyer WHERE buyer_id = par_buyer_id;
+
+  END IF;
+END;
+$$ LANGUAGE 'plpgsql';
+
+create or replace function upsert_contact(IN par_contact_id INT, IN par_c_number Varchar, IN par_name Varchar, IN par_l_name Varchar)
+  returns TEXT AS
+  $$
+
+  DECLARE
+    loc_response TEXT;
+    loc_out TEXT;
+
+    BEGIN
+      IF par_contact_id ISNULL
+      THEN
+        INSERT INTO contacts (c_number, name, l_name)
+        VALUES (par_c_number, par_name, par_l_name)
+        RETURNING contact_id
+          INTO loc_response;
+      ELSE
+        SELECT INTO loc_out contact_id
+        FROM contacts
+        WHERE contact_id = par_contact_id;
+
+        IF loc_out ISNULL
+        THEN
+          loc_response = 'error';
+        ELSE
+          UPDATE contacts
+          SET c_number = par_c_number, name = par_name, l_name = par_l_name
+                            
+          WHERE contact_id = par_contact_id;
+
+        END IF;
+    END IF;
+
+    RETURN loc_response;
+  END;
+  $$ LANGUAGE 'plpgsql';
+
+--select * from upsert_contact('09359145088', 'Liza', 'Soberano');
+
+create or replace function getcontacts(In par_contact_id INT) RETURNS SETOF contacts AS
+
+$$
+  BEGIN
+  IF par_contact_id ISNULL
+  THEN
+    RETURN QUERY SELECT * FROM contacts;
+  ELSE
+    RETURN QUERY SELECT * FROM contacts WHERE contact_id = par_contact_id;
+
+  END IF;
+END;
+$$ LANGUAGE 'plpgsql';
+
+-- create or replace function sellercontacts(par_buyer_name Varchar, par_buyer_contact_number Varchar) RETURNS text AS
+
+-- $$
+--   DECLARE
+--     loc_buyer_contact_number TEXT;
+--     loc_res TEXT;
+--   BEGIN
+--   SELECT INTO loc_buyer_contact_number FROM SellerContacts WHERE buyer_contact_number = par_buyer_contact_number;
+--   if loc_buyer_contact_number isnull THEN
+
+--     if par_buyer_name = '' or par_buyer_contact_number = '' THEN loc_res = 'Error';
+
+--     ELSE
+--       INSERT INTO SellerContacts(buyer_name, buyer_contact_number)
+--         VALUES(par_buyer_name, par_buyer_contact_number);
+--         loc_res = 'OK';
+--       end if;
+
+--     ELSE
+--       loc_res = 'OK';
+--     end if;
+
+--     return loc_res;
+--   END;
+-- $$
+--   LANGUAGE 'plpgsql';

@@ -49,17 +49,26 @@ def i_get_a_message(step, message):
 def given_i_have_the_following_data(step):
     world.data = step.hashes[0]
 
-
 @step('I save the data')
 def i_post_to_the_url_url(step):
     world.response = world.browser.post(world.resource, data=json.dumps(world.data))
     world.response_data = json.loads(world.response.data)
 
+@step('I have the ff data')
+def i_post_the_data(step):
+    world.data = step.hashes[0]
 
 @step("I have a form")
 def given_i_have_the_following_data(step):
     world.data = {}
 
+@step('I have the ff data')
+def i_post_the_data(step):
+    world.data = step.hashes[0]
+
+@step("I have a form with the ff data")
+def form_with_data(step):
+    world.data = step.hashes[0]
 
 @step('I have a field "(.*)" with value "(.*)"')
 def i_have_a_field_with_value(step, field, field_value):
@@ -103,3 +112,22 @@ def i_send_a_put_request_from_client(step):
     print world.response
     world.response_data = json.loads(world.response.data)
 
+
+@step(u'Given I have the following data:')
+def given_seller_data(step):
+    world.d = step.hashes[0]
+
+@step(u'When I post the information to resource_url "(?P<url>.+)"')
+def post(step):
+    world.bwowser = TestAppp(app)
+    world.seller_uri = '/addsellers/'
+    world.response = world.app.post(world.seller_uri, data = json.dumps(world.fill))
+    
+@step(u'Then I should have a response of  \'(.*)\'')
+def response(step, expected_status_code):
+    assert_equals((world.response.status_code, int(expected_status_code)))
+
+@step(u'And it should have a field "status" containing "OK"')
+def status_field(step):
+    world.rsp = json.loads(world.response.data)
+    assert_equals(world.rsp['status'], "OK")
