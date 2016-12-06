@@ -72,15 +72,4 @@ CREATE TABLE contacts (
   l_name Varchar(50)
 );
 
-CREATE TABLE SellerContacts (
-  c_id INT REFERENCES contacts(contact_id),
-  buyer_name Varchar(50),
-  buyer_contact_number Varchar(50)
-);
-
-CREATE TABLE BuyerContacts (
-    contact_id INT REFERENCES Buyer(buyer_id),
-    seller_name Varchar(50),
-    seller_contact_number Varchar(50)
-  );
 
