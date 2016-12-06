@@ -78,7 +78,7 @@ class DuplicateRow(Exception):
 
 class DBconn:
     def __init__(self):
-        engine = create_engine("postgresql://postgres:asdasd@127.0.0.1:5432/agrisensodb", echo=False)
+        engine = create_engine("postgresql://agrisenso:agrisenso@127.0.0.1:5432/agrisensodb", echo=False)
         self.conn = engine.connect()
         self.trans = self.conn.begin()
 

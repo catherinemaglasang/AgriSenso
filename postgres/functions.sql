@@ -339,8 +339,8 @@ $$ LANGUAGE 'plpgsql';
 --SELECT videos_upsert(NULL, 'video.mp4', 'today');
 --SELECT notes_upsert(NULL, 'note', 'note description', 'today');
 --SELECT products_upsert(NULL, 'product', 'product description', '20.50', 'today');
---SELECT product_infos_upsert('1', '1');
---SELECT product_videos_upsert('1', '1');
+--SELECT product_infos_upsert('1', '1', 'today');
+--SELECT product_videos_upsert('1', '1', 'today');
 
 --
 create or replace function upsert_seller(IN par_seller_id INT, IN par_first_name Varchar, IN par_middle_name Varchar, IN par_last_name Varchar, IN par_email Varchar,
@@ -498,30 +498,3 @@ $$
   END IF;
 END;
 $$ LANGUAGE 'plpgsql';
-
--- create or replace function sellercontacts(par_buyer_name Varchar, par_buyer_contact_number Varchar) RETURNS text AS
-
--- $$
---   DECLARE
---     loc_buyer_contact_number TEXT;
---     loc_res TEXT;
---   BEGIN
---   SELECT INTO loc_buyer_contact_number FROM SellerContacts WHERE buyer_contact_number = par_buyer_contact_number;
---   if loc_buyer_contact_number isnull THEN
-
---     if par_buyer_name = '' or par_buyer_contact_number = '' THEN loc_res = 'Error';
-
---     ELSE
---       INSERT INTO SellerContacts(buyer_name, buyer_contact_number)
---         VALUES(par_buyer_name, par_buyer_contact_number);
---         loc_res = 'OK';
---       end if;
-
---     ELSE
---       loc_res = 'OK';
---     end if;
-
---     return loc_res;
---   END;
--- $$
---   LANGUAGE 'plpgsql';

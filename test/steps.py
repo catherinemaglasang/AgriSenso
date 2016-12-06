@@ -119,13 +119,14 @@ def given_seller_data(step):
 
 @step(u'When I post the information to resource_url "(?P<url>.+)"')
 def post(step):
-    world.bwowser = TestAppp(app)
     world.seller_uri = '/addsellers/'
     world.response = world.app.post(world.seller_uri, data = json.dumps(world.fill))
-    
+
+
 @step(u'Then I should have a response of  \'(.*)\'')
 def response(step, expected_status_code):
     assert_equals((world.response.status_code, int(expected_status_code)))
+
 
 @step(u'And it should have a field "status" containing "OK"')
 def status_field(step):
