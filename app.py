@@ -267,6 +267,7 @@ def seller_upsert(seller_id=None):
             data['middle_name'],
             data['last_name'],
             data['email'],
+            data['password'],
             data['age'],
             data['contact_number'],
             data['address'],))
@@ -306,6 +307,7 @@ def buyer_upsert(buyer_id=None):
             data['middle_name'],
             data['last_name'],
             data['email'],
+            data['password'],
             data['age'],
             data['contact_number'],
             data['address'],))
