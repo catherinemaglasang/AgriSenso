@@ -73,8 +73,3 @@ CREATE TABLE contacts (
   name Varchar(50),
   l_name Varchar(50)
 );
-<<<<<<< HEAD
-=======
-
-
->>>>>>> ee93c9562c2be41e5cb452e54a8eb6cb566fb78e
