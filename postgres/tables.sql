@@ -49,6 +49,7 @@ CREATE TABLE Seller (
   middle_name Varchar(50),
   last_name Varchar(50),
   email Varchar(50),
+  password Varchar(50),
   age INT,
   contact_number Varchar(50),
   address Varchar(100)
@@ -60,6 +61,7 @@ CREATE TABLE Buyer (
   middle_name Varchar(50),
   last_name Varchar(50),
   email Varchar(50),
+  password Varchar(50),
   age INT,
   contact_number Varchar(50),
   address Varchar(100)
