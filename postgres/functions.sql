@@ -380,6 +380,9 @@ create or replace function upsert_seller(IN par_seller_id INT, IN par_first_name
   END;
   $$ LANGUAGE 'plpgsql';
 
+#select upsert_seller('Marjorie', 'Galabin', 'Buctolan', 'marjbuctolan@gmail.com', 'asdasd', '19', '09061233822', 'Pualas, Tubod, LDN');
+
+
 create or replace function getsellers(In par_seller_id INT) RETURNS SETOF Seller AS
 
 $$
@@ -499,6 +502,19 @@ $$
 END;
 $$ LANGUAGE 'plpgsql';
 
+create or replace function get_all_contacts(OUT INT, OUT Varchar, OUT Varchar, OUT Varchar) RETURNS SETOF record AS
+
+$$
+  SELECT contact_id, c_number, name, l_name FROM contacts;
+$$
+  LANGUAGE 'sql';
+
+create or replace function getcontact_id(IN par_contact_id INT, OUT Varchar, OUT Varchar, OUT Varchar) RETURNS SETOF RECORD AS
+
+$$
+  SELECT c_number, name, l_name FROM contacts WHERE contact_id = par_contact_id;
+$$
+  LANGUAGE 'sql';
 
 
 create or replace function loginauth(in par_email text, in par_password text) returns text as
