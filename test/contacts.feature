@@ -61,7 +61,7 @@ Feature: Get, Create & Update Contacts
     Given I have a resource with the id "99999"
     And I want to update its data to the following data
       |contact_id|c_number|name|l_name|
-      |99999|096742374627|Marj|2016-11-15|
+      |99999|096742374627|Marj|Buctolan|
     When I update the data
     Then I get a "404" response
     And I get a field "status" containing "error"
