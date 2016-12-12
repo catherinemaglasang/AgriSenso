@@ -18,7 +18,6 @@
             <table class="table table-striped table-condensed table-hover">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Phone Number</th>
                     <th>First Name</th>
                     <th>Surname</th>
@@ -29,8 +28,7 @@
                 <tbody>
                 </tr>
                 <tr ng-repeat="contact in contactList">
-                    <td style="color: black">{{ contact.contact_id}}</td>
-                    <td>{{ contact.[0]}}</td>
+                    <td>{{ contact.c_number}}</td>
                     <td>{{ contact.name }}</td>
                     <td>{{ contact.l_name }}</td>
                     <td><a href="#/dashboard/contacts/{{ contact.contact_id }}">Edit</a></td>

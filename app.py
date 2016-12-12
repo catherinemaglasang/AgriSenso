@@ -350,12 +350,27 @@ def contact_upsert(contact_id=None):
 @app.route('/contacts/<contact_id>/', methods=['GET'])
 def get_contact(contact_id=None):
     data = spcall('getcontacts', (contact_id,), )
-    response = build_json(data)
+    # response = build_json(data)
+    entries = []
 
-    if contact_id and len(response['entries']) == 0:
+    if len(data) == 0:
+        return {"status": "OK", "message": "OK", "entries": [], "count": 0}
+
+    if 'Error' in str(data[0][0]):
+        return {'status': 'error', 'message': data[0][0]}
+
+    for row in data:
+        entries.append({contact_id: row[0],
+                        "c_number": row[1],
+                        "name": row[2],
+                        "l_name": row[3]})
+
+    print entries
+
+    if contact_id and len(data['entries']) == 0:
         """ Contact ID does not exist """
         raise InvalidRequest('Does not exist', status_code=404)
-    return jsonify(response)
+    return jsonify({"status": "ok", "message": "ok", "entries": entries, "count": len(entries)})
 
 
 # Handler
