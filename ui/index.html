@@ -40,16 +40,16 @@
                     </li>
                     <li><a href="#" data-effect="mfp-move-from-top" class="popup-text">ABOUT</a>
                     </li>
-                    <li><select class="selectpicker" data-live-search="true">
+                    <li><select class="selectpicker" data-live-search="true" onchange="location = this.value">
                           <option data-effect="mfp-move-from-top" class="popup-text" >LOGIN</option>
                           <option data-tokens="mustard"><a href="#">Seller</a></option>
-                          <option data-tokens="frosting"><a href="#">Buyer</a></option>
+                          <option data-tokens="mustard" value="buyer/pages/login.html">Buyer</option>
                         </select>
                     </li>
-                    <li><select class="selectpicker" data-live-search="true">
+                    <li><select class="selectpicker" data-live-search="true" onchange="location = this.value">
                           <option data-effect="mfp-move-from-top" class="popup-text" >SIGN UP</option>
-                          <option data-tokens="mustard"><a href="#">Seller</a></option>
-                          <option data-tokens="frosting"><a href="#">Buyer</a></option>
+                          <option data-tokens="mustard">Seller</option>
+                          <option data-tokens="frosting" value="buyer/signup.html">Buyer</option>
                         </select>
                     </li>
                 </ul>
