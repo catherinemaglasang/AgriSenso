@@ -344,7 +344,7 @@ $$ LANGUAGE 'plpgsql';
 
 --
 create or replace function upsert_seller(IN par_seller_id INT, IN par_first_name Varchar, IN par_middle_name Varchar, IN par_last_name Varchar, IN par_email Varchar,
-                  In par_age INT, IN par_contact_number Varchar, IN par_address Varchar)
+                 In par_password Varchar, In par_age INT, IN par_contact_number Varchar, IN par_address Varchar)
   returns TEXT AS
   $$
 
@@ -355,8 +355,8 @@ create or replace function upsert_seller(IN par_seller_id INT, IN par_first_name
     BEGIN
       IF par_seller_id ISNULL
       THEN
-        INSERT INTO Seller (first_name, middle_name, last_name, email, age, contact_number, address)
-        VALUES (par_first_name, par_middle_name, par_last_name, par_email, par_age, par_contact_number, par_address)
+        INSERT INTO Seller (first_name, middle_name, last_name, email, password, age, contact_number, address)
+        VALUES (par_first_name, par_middle_name, par_last_name, par_email, par_password, par_age, par_contact_number, par_address)
         RETURNING seller_id
           INTO loc_response;
       ELSE
@@ -370,7 +370,7 @@ create or replace function upsert_seller(IN par_seller_id INT, IN par_first_name
         ELSE
           UPDATE Seller
           SET first_name = par_first_name, middle_name = par_middle_name, last_name = par_last_name,
-                            email = par_email, age = par_age, contact_number = par_contact_number, address = par_address
+                            email = par_email, password = par_password, age = par_age, contact_number = par_contact_number, address = par_address
           WHERE seller_id = par_seller_id;
 
         END IF;
@@ -379,6 +379,9 @@ create or replace function upsert_seller(IN par_seller_id INT, IN par_first_name
     RETURN loc_response;
   END;
   $$ LANGUAGE 'plpgsql';
+
+--select upsert_seller(NONE, 'Marjorie', 'Galabin', 'Buctolan', 'marjbuctolan@gmail.com', 'asdasd', 19', '09061233822', 'Pualas, Tubod, LDN');
+
 
 create or replace function getsellers(In par_seller_id INT) RETURNS SETOF Seller AS
 
@@ -395,7 +398,7 @@ END;
 $$ LANGUAGE 'plpgsql';
 
 create or replace function upsert_buyer(IN par_buyer_id INT, IN par_first_name Varchar, IN par_middle_name Varchar, IN par_last_name Varchar, IN par_email Varchar,
-                  In par_age INT, IN par_contact_number Varchar, IN par_address Varchar)
+                  In par_password Varchar, In par_age INT, IN par_contact_number Varchar, IN par_address Varchar)
   returns TEXT AS
   $$
 
@@ -406,8 +409,8 @@ create or replace function upsert_buyer(IN par_buyer_id INT, IN par_first_name V
     BEGIN
       IF par_buyer_id ISNULL
       THEN
-        INSERT INTO Buyer (first_name, middle_name, last_name, email, age, contact_number, address)
-        VALUES (par_first_name, par_middle_name, par_last_name, par_email, par_age, par_contact_number, par_address)
+        INSERT INTO Buyer (first_name, middle_name, last_name, email, password, age, contact_number, address)
+        VALUES (par_first_name, par_middle_name, par_last_name, par_email, par_password, par_age, par_contact_number, par_address)
         RETURNING buyer_id
           INTO loc_response;
       ELSE
@@ -421,7 +424,7 @@ create or replace function upsert_buyer(IN par_buyer_id INT, IN par_first_name V
         ELSE
           UPDATE Buyer
           SET first_name = par_first_name, middle_name = par_middle_name, last_name = par_last_name,
-                            email = par_email, age = par_age, contact_number = par_contact_number, address = par_address
+                            email = par_email, password = par_password, age = par_age, contact_number = par_contact_number, address = par_address
           WHERE buyer_id = par_buyer_id;
 
         END IF;
@@ -431,7 +434,7 @@ create or replace function upsert_buyer(IN par_buyer_id INT, IN par_first_name V
   END;
   $$ LANGUAGE 'plpgsql';
 
---select upsert_buyer('Catherine', 'Basay', 'Maglasang', 'maglasangcatherine12@gmail.com', '19', '09252979173', 'Abuno, Iligan City');
+--select upsert_buyer(NONE, 'Catherine', 'Basay', 'Maglasang', 'maglasangcatherine12@gmail.com', 'asdasd', 19', '09252979173', 'Abuno, Iligan City');
 
 create or replace function getbuyers(In par_buyer_id INT) RETURNS SETOF Buyer AS
 
