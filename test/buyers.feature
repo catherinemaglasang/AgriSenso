@@ -30,8 +30,8 @@ Feature: Handle storing, retreiving details, update details
    Scenario: Add buyer - Success!
 
 	  Given I have a form with the ff data
-	 |buyer_id|first_name|middle_name|last_name|email|age|contact_number| address| 
-	 |1|Catherine|Basay|Maglasang|maglasangcatherine12@gmail.com|19|09252979173|Abuno, Iligan City|
+	 |buyer_id|first_name|middle_name|last_name|email|password|age|contact_number| address|
+	 |1|Catherine|Basay|Maglasang|maglasangcatherine12@gmail.com|password|19|09252979173|Abuno, Iligan City|
 	  When I save the data
 	  Then I get a "201" response
 	  And I get a field "status" containing "OK"
@@ -57,8 +57,8 @@ Feature: Handle storing, retreiving details, update details
   Scenario: Update Buyer- Success!
     Given I have a resource with the id "1"
     And I want to update its data to the following data
-    |buyer_id|first_name|middle_name|last_name|email|age|contact_number|address| 
-	  |1|Nadine|Basay|Maglasang|maglasangnadine12@gmail.com|19|09061233822|Pualas, Tubod, LDN|
+    |buyer_id|first_name|middle_name|last_name|email|password|age|contact_number|address|
+	  |1|Nadine|Basay|Maglasang|maglasangnadine12@gmail.com|password|19|09061233822|Pualas, Tubod, LDN|
     When I update the data
     Then I get a "200" response
     And I get a field "status" containing "OK"
@@ -67,8 +67,8 @@ Feature: Handle storing, retreiving details, update details
   Scenario: Update Buyer- Error, Info doesn't exist, raise 404
     Given I have a resource with the id "99999"
     And I want to update its data to the following data
-    |buyer_id|first_name|middle_name|last_name|email|age|contact_number|address| 
-    |9999999|Nadine|Basay|Maglasang|maglasangnadine12@gmail.com|19|09061233822|Pualas, Tubod, LDN|
+    |buyer_id|first_name|middle_name|last_name|email|password|age|contact_number|address|
+    |9999999|Nadine|Basay|Maglasang|maglasangnadine12@gmail.com|password|19|09061233822|Pualas, Tubod, LDN|
     When I update the data
     Then I get a "404" response
     And I get a field "status" containing "error"

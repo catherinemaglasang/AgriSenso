@@ -365,12 +365,7 @@ def get_contact(contact_id=None):
                         "name": row[2],
                         "l_name": row[3]})
 
-    print entries
-
-    if contact_id and len(data['entries']) == 0:
-        """ Contact ID does not exist """
-        raise InvalidRequest('Does not exist', status_code=404)
-    return jsonify({"status": "ok", "message": "ok", "entries": entries, "count": len(entries)})
+    return jsonify({"status": "OK", "message": "OK", "entries": entries, "count": len(entries)})
 
 
 # Handler

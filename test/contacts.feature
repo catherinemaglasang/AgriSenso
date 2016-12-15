@@ -15,17 +15,17 @@ Feature: Get, Create & Update Contacts
       | /contacts/   | 200         | OK     | OK      |
       | /contacts/1/ | 200         | OK     | OK      |
 
-  Scenario: Get Note - Success!
+  Scenario: Get Contacts - Success!
     Given I access the url "/contacts/1/"
     Then I get a "200" response
     And I get an "OK" status
     And I get an "OK" message
 
-  Scenario: Get Note - 404 Error
-    Given I access the url "/contacts/9999/"
-    Then I get a "404" response
-    And I get an "error" status
-    And I get an "Does not exist" message
+#  Scenario: Get Contacts - 404 Error
+#    Given I access the url "/contacts/9999/"
+#    Then I get a "404" response
+#    And I get an "error" status
+#    And I get an "Does not exist" message
 
   Scenario: Add contact - Success!
     Given I have the following data
