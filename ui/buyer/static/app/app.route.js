@@ -19,9 +19,8 @@ mainApp.config(function ($routeProvider, $locationProvider, $resourceProvider) {
             controller: 'MainController'
         })
 
-
         .when('/dashboard/products', {
-            templateUrl: 'pages/products/products.html',
+            templateUrl: 'pages/products.html',
             controller: 'MainController'
         })
 
