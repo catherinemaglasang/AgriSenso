@@ -42,7 +42,7 @@ h6,
 #banner {
    position: relative;
    width: 100%;
-   height: 500px;
+   height: 700px;
 }
 
 .widget-title,
@@ -115,12 +115,12 @@ hr {
     }
 }
 
-.global-wrapper {
+.global-wrapper1 {
     background: #ededed !important;
 }
 
 @media (min-width: 1200px) {
-    body.boxed .global-wrapper {
+    body.boxed .global-wrapper1 {
         -webkit-border-radius: 5px;
         border-radius: 5px;
         overflow: hidden;
@@ -239,13 +239,17 @@ hr {
 
 .navbar-main .navbar-nav > li > a {
     color: #5AC58E;
-    padding: 15px;
+    padding: 19px;
 }
 .navbar-main .navbar-nav > li > select {
     color: #5AC58E;
     padding: 15px;
     border-color: #fff;
     background-color: white;
+}
+.navbar-main .navbar-nav > li > select:hover {
+    background: #fff;
+    color: #728D3F;
 }
 
 @media (min-width: 992px) {
@@ -267,7 +271,8 @@ hr {
 }
 
 .navbar-brand > img {
-    width: 90px;
+    margin-left: -200px;
+    width: 130px;
 }
 
 .navbar-item-top {
@@ -275,7 +280,7 @@ hr {
 }
 
 .navbar-nav > li > a {
-    font-size: 16px;
+    font-size: 25px;
 }
 
 .navbar-nav > li > a > span {
@@ -1237,16 +1242,25 @@ hr {
     margin-right: 15px;
 }
 
+/*.copyright-area {*/
+    /*background: #080808;*/
+    /*color: #fff;*/
+    /*-webkit-box-shadow: 0 0 3px #000;*/
+    /*box-shadow: 0 0 3px #000;*/
+    /*position: relative;*/
+/*}*/
 .copyright-area {
-    background: #080808;
+    background: #3c3c3c;
     color: #fff;
     -webkit-box-shadow: 0 0 3px #000;
     box-shadow: 0 0 3px #000;
     position: relative;
-}
+    margin-top: 50%;
+    padding: 5%;
 
+}
 .copyright-text {
-    font-size: 11px;
+    font-size: 15px;
     color: #ccc;
     margin-top: 15px;
 }
@@ -2272,7 +2286,7 @@ hr {
     filter: alpha(opacity=70);
 }
 
-.preview-body .global-wrapper {
+.preview-body .global-wrapper1 {
     background: #fff;
 }
 

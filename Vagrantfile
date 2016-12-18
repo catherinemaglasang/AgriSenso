@@ -6,7 +6,7 @@ Vagrant.configure(2) do |config|
   config.vm.box_url   = "https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box"
 
   config.vm.network "forwarded_port", guest: 5000, host: 8085
-  config.vm.network "forwarded_port", guest: 8000, host: 8085
+  config.vm.network "forwarded_port", guest: 8085, host: 8000
 
   config.vm.provider "virtualbox" do |vb|
      vb.name = "AgriSenso"

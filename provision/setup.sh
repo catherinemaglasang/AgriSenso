@@ -1,3 +1,6 @@
+echo 'Installing Pip...'; InstallPip
+echo 'Installing Flask...';
+sudo pip install flask
 yum -y install httpd
 yum install postgresql
 pip install Flask

@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION products_upsert(IN par_product_id   INT, IN par_product_name TEXT,
+  CREATE OR REPLACE FUNCTION products_upsert(IN par_product_id   INT, IN par_product_name TEXT,
                                             IN par_description TEXT, IN par_price FLOAT ,
                                             IN par_date_added  TIMESTAMP)
   RETURNS TEXT AS $$

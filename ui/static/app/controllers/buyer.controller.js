@@ -1,4 +1,4 @@
-mainApp.controller('MainController', ['$scope', '$http', '$location', 'Contact', 'Product', '$routeParams', function ($scope, $http, $location, Contact, Product, $routeParams) {
+mainApp.controller('BuyerController', ['$scope', '$http', '$location', 'Contact', 'Product', '$routeParams', function ($scope, $http, $location, Contact, Product, $routeParams) {
 
     $scope.product= new Product();
     $scope.contact = new Contact();
