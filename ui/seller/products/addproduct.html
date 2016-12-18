@@ -1,0 +1,32 @@
+<section class="content">
+    <h1>
+        Add Product
+    </h1>
+    <form ng-submit="addProduct()" class="form">
+        <div class="box box-solid">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input class="form-control" type="text" ng-model="product.product_name"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Product Description</label>
+                            <input class="form-control" type="text" ng-model="product.description"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Product Price</label>
+                            <input class="form-control" type="text" ng-model="product.price"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Save">
+            <a href="#/dashboard/addproduct" class="btn btn-danger">Cancel</a>
+        </div>
+    </form>
+
+</section>

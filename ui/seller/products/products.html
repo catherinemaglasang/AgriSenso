@@ -10,7 +10,7 @@
 <section class="content">
     <div class="box">
         <div class="box-header with-border">
-            <a class="btn btn-default btn-mini btn btn-info" href="#/addproduct">Add Product</a>
+            <a class="btn btn-default btn-mini btn btn-info" href="#/dashboard/addproduct">Add Product</a>
         </div>
         <div class="gap"></div>
         <!-- /.box-header -->
@@ -31,8 +31,7 @@
                     <td>{{ product.product_name}}</td>
                     <td>{{ product.description }}</td>
                     <td>{{ product.price }}</td>
-                    <td><a href="#/products/{{ product.product_id }}">Edit</a></td>
-                </tr>
+                    <td><a href="#/dashboard/products/{{ product.product_id }}">Edit</a></td>
                 </tbody>
             </table>
         </div>
