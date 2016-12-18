@@ -11,17 +11,17 @@ def index():
     return jsonify({"status": "OK", "message": "OK"})
 
 
-@app.route('/products/', methods=['GET'])
-@app.route('/products/<product_id>/', methods=['GET'])
-def products_get(product_id=None):
-    data = spcall('products_get', (product_id,), )
-    response = build_json(data)
+# @app.route('/products/', methods=['GET'])
+# @app.route('/products/<product_id>/', methods=['GET'])
+# def products_get(product_id=None):
+#     data = spcall('products_get', (product_id,), )
+#     response = build_json(data)
 
-    if product_id and len(response['entries']) == 0:
-        """ Product ID does not exist """
-        raise InvalidRequest('Does not exist', status_code=404)
+#     if product_id and len(response['entries']) == 0:
+#         """ Product ID does not exist """
+#         raise InvalidRequest('Does not exist', status_code=404)
 
-    return jsonify(response)
+#     return jsonify(response)
 
 
 @app.route('/products/', methods=['POST'])
@@ -51,19 +51,44 @@ def products_upsert(product_id=None):
         raise InvalidForm('Some fields have error values', status_code=422)
 
 
-@app.route('/infos/', methods=['GET'])
-@app.route('/infos/<info_id>/', methods=['GET'])
-def attributes_get(info_id=None):
-    data = spcall('infos_get', (info_id,), )
+# @app.route('/infos/', methods=['GET'])
+# @app.route('/infos/<info_id>/', methods=['GET'])
+# def attributes_get(info_id=None):
+#     data = spcall('infos_get', (info_id,), )
 
-    response = build_json(data)
+#     response = build_json(data)
 
-    if info_id and len(response['entries']) == 0:
+#     if info_id and len(response['entries']) == 0:
+#         """ Product ID does not exist """
+#         raise InvalidRequest('Does not exist', status_code=404)
+
+#     return jsonify(response)
+
+@app.route('/products/', methods=['GET'])
+@app.route('/products/<product_id>/', methods=['GET'])
+def get_product(product_id=None):
+    data = spcall('getproducts', (product_id,), )
+    # response = build_json(data)
+    entries = []
+
+    if len(data) == 0:
+        return {"status": "OK", "message": "OK", "entries": [], "count": 0}
+
+    if 'Error' in str(data[0][0]):
+        return {'status': 'error', 'message': data[0][0]}
+
+    for row in data:
+        entries.append({product_id: row[0],
+                        "product_name": row[1],
+                        "description": row[2],
+                        "price": row[3],
+                        "date_added": row[4]})
+    print entries
+
+    if product_id and len(data['entries']) == 0:
         """ Product ID does not exist """
         raise InvalidRequest('Does not exist', status_code=404)
-
-    return jsonify(response)
-
+    return jsonify({"status": "ok", "message": "ok", "entries": entries, "count": len(entries)})
 
 @app.route('/infos/', methods=['POST'])
 @app.route('/infos/<info_id>/', methods=['PUT'])
