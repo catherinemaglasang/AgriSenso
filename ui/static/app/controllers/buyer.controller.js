@@ -6,17 +6,17 @@ mainApp.controller('BuyerController', ['$scope', '$http', '$location', 'Contact'
     $scope.productList = [];
     $scope.contactList = [];
 
-    $scope.addProduct = function () {
-        $scope.product.product_id = null;
-        $scope.product.$save(function () {
-            $scope.product = new Location();
-            $location.path('/dashboard/products');
-            $scope.initialize();
-        });
-    };
+    //$scope.addProduct = function () {
+    //    $scope.product.product_id = null;
+    //    $scope.product.$save(function () {
+    //        $scope.product = new Location();
+    //        $location.path('/dashboard/products');
+    //        $scope.initialize();
+    //    });
+    //};
 
     $scope.addContact = function () {
-        $scope.contact.contact_id = null;
+        //$scope.contact.contact_id = null;
         $scope.contact.$save(function () {
             $scope.contact= new Contact();
             $location.path('/dashboard/contacts');
@@ -39,24 +39,16 @@ mainApp.controller('BuyerController', ['$scope', '$http', '$location', 'Contact'
 }]);
 
 
-//
-//mainApp.controller('LocationDetailController', ['$scope', '$http', '$location', 'Item', 'Location', 'Attribute', '$routeParams', function ($scope, $http, $location, Item, Location, Attribute, $routeParams) {
-//    var locationId = $routeParams.id;
-//
-//    $scope.location = '';
-//
-//    $scope.getLocationDetail = function () {
-//        Location.get({id: locationId}, function (data) {
-//            $scope.location = data.entries[0];
-//        });
-//    };
-//
-//    $scope.updateLocationDetail = function () {
-//        Location.update({id: locationId}, $scope.location, function () {
-//            $location.path('/dashboard/locations/all');
-//        });
-//    };
-//
-//    $scope.getLocationDetail();
-//}]);
+
+mainApp.controller('BuyerLoginController', function($scope, $location, $rootScope){
+    $scope.submit = function() {
+        if($scope.username == 'cath@gmail.com' && $scope.password == 'cath') {
+            $rootScope.loggedIn = true;
+            $location.path('/buyer/dashboard');
+        } else {
+            alert('Invalid credentials');
+        }
+    }
+});
+
 
