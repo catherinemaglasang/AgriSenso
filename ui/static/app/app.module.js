@@ -1,2 +1,1 @@
-var mainApp = mainApp || angular.module('MainApp', ['ngRoute', 'ngResource']);
-
+var mainApp = mainApp || angular.module('MainApp', ['ngRoute', 'ngResource', 'toaster', 'ngAnimate']);
