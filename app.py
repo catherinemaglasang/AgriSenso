@@ -67,8 +67,9 @@ def products_upsert(product_id=None):
 @app.route('/products/', methods=['GET'])
 @app.route('/products/<product_id>/', methods=['GET'])
 def get_product(product_id=None):
-    data = spcall('getproducts', (product_id,), )
+    data = spcall('products_get', (product_id,), )
     # response = build_json(data)
+    print data
     entries = []
 
     if len(data) == 0:
@@ -83,12 +84,12 @@ def get_product(product_id=None):
                         "description": row[2],
                         "price": row[3],
                         "date_added": row[4]})
-    print entries
 
-    if product_id and len(data['entries']) == 0:
-        """ Product ID does not exist """
-        raise InvalidRequest('Does not exist', status_code=404)
+    # if product_id and len(data['entries']) == 0:
+    #     """ Product ID does not exist """
+    #     raise InvalidRequest('Does not exist', status_code=404)
     return jsonify({"status": "ok", "message": "ok", "entries": entries, "count": len(entries)})
+
 
 @app.route('/infos/', methods=['POST'])
 @app.route('/infos/<info_id>/', methods=['PUT'])
