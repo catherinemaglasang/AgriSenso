@@ -1,4 +1,4 @@
-mainApp.controller('SellerController', ['$scope', '$http', '$location', 'Contact', 'Product', '$routeParams', function ($scope, $http, $location, Contact, Product, $routeParams) {
+mainApp.controller('SellerController', ['$scope', '$http', '$location', '$filter', 'Contact', 'Product', '$routeParams', function ($filter, $scope, $http, $location, Contact, Product, $routeParams) {
 
     $scope.product= new Product();
     $scope.contact = new Contact();
@@ -8,6 +8,7 @@ mainApp.controller('SellerController', ['$scope', '$http', '$location', 'Contact
 
     $scope.addProduct = function () {
         $scope.product.product_id = null;
+        $scope.product.date_added = $filter('date')(Date.now(), 'MMM-dd-yyyy HH:mm:ss');
         $scope.product.$save(function () {
             $scope.product = new Product();
             $location.path('/dashboard/products');
@@ -24,8 +25,6 @@ mainApp.controller('SellerController', ['$scope', '$http', '$location', 'Contact
         });
     };
 
-
-
     $scope.initialize = function () {
         Product.get(function (data) {
             $scope.productList = data.entries;
@@ -38,3 +37,14 @@ mainApp.controller('SellerController', ['$scope', '$http', '$location', 'Contact
     $scope.initialize();
 
 }]);
+
+mainApp.controller('SellerLoginController', function($scope, $location, $rootScope){
+    $scope.submit = function() {
+        if($scope.username == 'marjorie@gmail.com' && $scope.password == 'asdasd') {
+            $rootScope.loggedIn = true;
+            $location.path('/seller/dashboard');
+        } else {
+            alert('Invalid credentials');
+        }
+    }
+});

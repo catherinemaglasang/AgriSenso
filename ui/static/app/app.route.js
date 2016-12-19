@@ -45,7 +45,7 @@ mainApp.config(function ($routeProvider, $locationProvider, $resourceProvider) {
         //Seller Module
         .when('/seller/login_seller', {
             templateUrl: 'seller/login_seller.html',
-            controller: 'SellerController'
+            controller: 'SellerLoginController'
         })
         .when('/seller/signup', {
             templateUrl: 'seller/signup_seller.html',
@@ -53,6 +53,13 @@ mainApp.config(function ($routeProvider, $locationProvider, $resourceProvider) {
         })
 
         .when('/seller/dashboard', {
+            resolve: {
+                "check": function($location, $rootScope) {
+                    if(!$rootScope.loggedIn) {
+                        $location.path('/seller/login_seller')
+                    }
+                }
+            },
             templateUrl: 'seller/index.html',
             controller: 'SellerController'
         })
