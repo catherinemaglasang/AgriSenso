@@ -11,8 +11,14 @@ mainApp.controller('SellerController', ['$scope', '$http', '$location', '$filter
         $scope.product.date_added = $filter('date')(Date.now(), 'MMM-dd-yyyy HH:mm:ss');
         $scope.product.$save(function () {
             $scope.product = new Product();
-            $location.path('/dashboard/products');
+            $location.path('/seller/dashboard/products');
             $scope.initialize();
+        });
+        toaster.pop({
+            type: 'success',
+            title: 'Success',
+            body: 'Added New Product',
+            showCloseButton: true
         });
     };
 
@@ -20,8 +26,14 @@ mainApp.controller('SellerController', ['$scope', '$http', '$location', '$filter
         $scope.contact.contact_id = null;
         $scope.contact.$save(function () {
             $scope.contact= new Contact();
-            $location.path('/dashboard/addcontact');
+            $location.path('/seller/dashboard/contacts');
             $scope.initialize();
+        });
+        toaster.pop({
+            type: 'success',
+            title: 'Success',
+            body: 'Added New Contact',
+            showCloseButton: true
         });
     };
 
@@ -42,9 +54,16 @@ mainApp.controller('SellerLoginController', function($scope, $location, $rootSco
     $scope.submit = function() {
         if($scope.username == 'marjorie@gmail.com' && $scope.password == 'asdasd') {
             $rootScope.loggedIn = true;
+            toaster.pop({
+                type: 'success',
+                title: 'Successfully logged in',
+                body: 'Welcome ' + $scope.username + '!',
+                showCloseButton: true
+            })
             $location.path('/seller/dashboard');
         } else {
             alert('Invalid credentials');
         }
     }
 });
+

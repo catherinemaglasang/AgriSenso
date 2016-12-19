@@ -34,14 +34,16 @@
                             <label>Date</label>
                             <input class="form-control" type="date" ng-model="date_added" required/>
                         </div>
+                        <div class="form-group">
+                            <label>Action</label>
+                            <br>
+                            <input type="submit" class="btn btn-primary" value="Save">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <label>Action</label>
-            <input type="submit" class="btn btn-primary" value="Save">
-        </div>
+        
     </form>
 </section>
         <div class="gap"></div>
@@ -58,10 +60,10 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="product in productList">
-                    <td>{{ product.product_name}}</td>
+                    <td>{{ product.product_name }}</td>
                     <td>{{ product.description }}</td>
                     <td>{{ product.price }}</td>
-                    <td>{{ product.date_added}}</td>
+                    <td>{{ product.date_added }}</td>
                     <td><a href="#/dashboard/products/{{ product.product_id }}">Edit</a></td>
                </tr>
             </table>

@@ -90,7 +90,7 @@ mainApp.config(function ($routeProvider, $locationProvider, $resourceProvider) {
             controller: 'SellerController'
         })
 
-        .when('/seller/dashboard/addcontact', {
+        .when('/seller/dashboard/contacts/add', {
             templateUrl: 'seller/addcontact.html',
             controller: 'SellerController'
         })
