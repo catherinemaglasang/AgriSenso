@@ -1,3 +1,8 @@
+<div ng-include src="'../index.html'"></div>
+<div class="col-md-2"></div>
+<div class="col-md-10">
+    <div class="gap"></div>
+
 <section class="content">
     <h1>
         Add Product
@@ -9,16 +14,20 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Product Name</label>
-                            <input class="form-control" type="text" ng-model="product.product_name"/>
+                            <input class="form-control" type="text" ng-model="product_name"/>
                         </div>
                         <div class="form-group">
                             <label>Product Description</label>
-                            <input class="form-control" type="text" ng-model="product.description"/>
+                            <input class="form-control" type="text" ng-model="description"/>
                         </div>
                         <div class="form-group">
                             <label>Product Price</label>
-                            <input class="form-control" type="text" ng-model="product.price"/>
+                            <input class="form-control" type="text" ng-model="price"/>
                         </div>
+                        <!-- <div class="form-group">
+                            <label>Date</label>
+                            <input class="form-control" type="date" ng-model="date_added"/>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -28,5 +37,5 @@
             <a href="#/dashboard/addproduct" class="btn btn-danger">Cancel</a>
         </div>
     </form>
-
 </section>
+</div>
