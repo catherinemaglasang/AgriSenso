@@ -4,6 +4,7 @@ mainApp.factory("Contact", ['$resource',
     }]);
 
 mainApp.factory("Product", ['$resource',
+
     function ($resource) {
         return $resource("http://localhost:5000/products/:id", {id: '@id'}, {});
     }]);

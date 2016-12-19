@@ -68,6 +68,48 @@ mainApp.config(function ($routeProvider, $locationProvider, $resourceProvider) {
             controller: 'BuyerController'
         })
 
+        //Seller Module
+        .when('/seller/login_seller', {
+            templateUrl: 'seller/login_seller.html',
+            controller: 'SellerLoginController'
+        })
+        .when('/seller/signup', {
+            templateUrl: 'seller/signup_seller.html',
+            controller: 'SellerController'
+        })
+
+        .when('/seller/dashboard', {
+            resolve: {
+                "check": function($location, $rootScope) {
+                    if(!$rootScope.loggedIn) {
+                        $location.path('/seller/login_seller')
+                    }
+                }
+            },
+            templateUrl: 'seller/index.html',
+            controller: 'SellerController'
+        })
+
+        .when('/seller/dashboard/addcontact', {
+            templateUrl: 'seller/addcontact.html',
+            controller: 'SellerController'
+        })
+
+        .when('/seller/dashboard/contacts', {
+            templateUrl: 'seller/contacts.html',
+            controller: 'SellerController'
+        })
+
+        .when('/seller/dashboard/products/add', {
+            templateUrl: 'seller/products/addproduct.html',
+            controller: 'SellerController'
+        })
+
+        .when('/seller/dashboard/products', {
+            templateUrl: 'seller/products/products.html',
+            controller: 'SellerController'
+        })
+
         .otherwise({
             redirectTo: '/AgriSenso'
         });

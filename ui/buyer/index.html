@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html ng-app="MainApp">
+<head>
+    <title>AgriSenso</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="description" content="Buy/Sell and Guide platform for Farmers and potential farm products Buyer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--<link href='http://fonts.googleapis.com/css?family=Roboto:500,300,700,400italic,400' rel='stylesheet' type='text/css'>-->
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'> -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,600' rel='stylesheet' type='text/css'>
+
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/sb-admin.css" rel="stylesheet">
+    <link href="static/css/plugins/morris.css" rel="stylesheet">
+    <link href="static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="static/font-awesome/css/font-awesome.css">
+    <!--<link rel="stylesheet" href="static/css/bootstrap.css">-->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="static/js/html5shiv.min.js"></script>
+    <script src="static/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="global-wrapper clearfix" id="global-wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" style="padding:10px;">
+                <img alt="AgriSenso" title="AgriSenso"/>
+            </a>
+        </div>
+        <!-- Top Menu Items -->
+        <ul class="nav navbar-right top-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                <ul class="dropdown-menu message-dropdown">
+                    <li class="message-preview">
+                        <a href="#">
+                            <div class="media">
+                                <span class="pull-left">
+                                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                </span>
+                                <div class="media-body">
+                                    <h5 class="media-heading"><strong>Catherine Maglasang</strong>
+                                    </h5>
+                                    <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="message-footer">
+                        <a href="#">Read All New Messages</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                <ul class="dropdown-menu alert-dropdown">
+                    <li>
+                        <a href="#">New product<span class="label label-default">New</span></a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">View All</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Catherine Maglasang <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li>
+                    <a href="#/dashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                </li>
+                <li>
+                    <a href="#/dashboard/contacts"><i class="fa fa-fw fa-bar-chart-o"></i> Contacts</a>
+                </li>
+                <li>
+                    <a href="#/dashboard/products"><i class="fa fa-fw fa-table"></i> Products</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
+    </div>
+    <toaster-container></toaster-container>
+    <div class="col-md-3"></div>
+    <div ng-view class="col-md-9"></div>
+
+    <!--<div class="content-wrapper">-->
+        <!--<div ng-view></div>-->
+    <!--</div>-->
+
+    <div class="copyright-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+                    <p class="copyright-text">Copyright &copy; <a href="#">AgriSenso</a> 2016. All rights reserved</p>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-2 copyright-text">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!--<div ng-view></div>-->
+
+    <script src="static/js/jquery.js"></script>
+
+    <script src="static/js/bootstrap.js"></script>
+    <!--<script src="static/js/icheck.js"></script>-->
+    <!--<script src="static/js/ionrangeslider.js"></script>-->
+    <!--<script src="static/js/jqzoom.js"></script>-->
+    <!--<script src="static/js/card-payment.js"></script>-->
+    <!--<script src="static/js/owl-carousel.js"></script>-->
+    <!--<script src="static/js/magnific.js"></script>-->
+    <!--<script src="static/js/custom.js"></script>-->
+
+    <!--<script src="static/js/angular-cookies.js"></script>-->
+    <!--<script src="static/js/angular-cookies.min.js"></script>-->
+    <!--<link href="static/js/AngularJS-Toaster/toaster.min.css" rel="stylesheet" />-->
+    <!--&lt;!&ndash;<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js" ></script>&ndash;&gt;-->
+    <!--<script src="static/js/angular-animate/angular-animate.js" ></script>-->
+    <!--<script src="static/js/AngularJS-Toaster/toaster.min.js"></script>-->
+<!--&lt;!&ndash;***********************************&ndash;&gt;-->
+    <script src="static/js/angular.min.js"></script>
+    <script src="static/lib/angular-resource/angular-resource.min.js"></script>
+
+    <!--<script src="static/js/angular-route.js"></script>-->
+    <script src="static/js/angular-route.min.js"></script>
+    <script src="static/js/angular-resource.js"></script>
+
+<!--***********************************-->
+    <script src="static/app/app.module.js"></script>
+    <script src="static/app/app.route.js"></script>
+    <script src="static/app/services/api.service.js"></script>
+    <script src="static/app/controllers/main.controller.js"></script>
+</body>
+</html>
