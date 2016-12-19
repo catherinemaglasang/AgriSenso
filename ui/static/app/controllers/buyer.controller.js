@@ -70,8 +70,6 @@ mainApp.controller('BuyerController', ['$scope', '$http', '$location', 'Contact'
 
 }]);
 
-
-
 mainApp.controller('BuyerLoginController', function($scope, $location, $rootScope, toaster){
     $scope.submit = function() {
         if($scope.username == 'cath@gmail.com' && $scope.password == 'cath') {
@@ -87,6 +85,20 @@ mainApp.controller('BuyerLoginController', function($scope, $location, $rootScop
             alert('Invalid credentials');
         }
     }
+});
+
+mainApp.controller('BuyerLogoutController', function($location, $window, $scope, toaster, $rootScope){
+    $rootScope.loggedIn = false;
+    $window.localStorage.clear();
+    $location.path('/buyer/login.html');
+    toaster.pop({
+        type: 'success',
+        title: 'Success',
+        body: 'Logged out',
+        showCloseButton: true
+    });
+    $rootScope.loggedIn = false;
+
 });
 
 
