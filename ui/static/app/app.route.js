@@ -26,18 +26,32 @@ mainApp.config(function ($routeProvider, $locationProvider, $resourceProvider) {
             controller: 'BuyerController'
         })
 
-        .when('/buyer/contacts', {
+        .when('/buyer/dashboard/contacts', {
+             resolve: {
+                "check": function($location, $rootScope) {
+                    if(!$rootScope.loggedIn) {
+                        $location.path('/buyer/login')
+                    }
+                }
+            },
             templateUrl: 'buyer/contacts/contacts.html',
             controller: 'BuyerController'
         })
 
 
-        .when('/buyer/products', {
+        .when('/buyer/dashboard/products', {
             templateUrl: 'buyer/products/products.html',
             controller: 'BuyerController'
         })
 
-        .when('/buyer/contacts/add', {
+        .when('/buyer/dashboard/contacts/add', {
+             resolve: {
+                "check": function($location, $rootScope) {
+                    if(!$rootScope.loggedIn) {
+                        $location.path('/buyer/login')
+                    }
+                }
+            },
             templateUrl: 'buyer/contacts/add_contacts.html',
             controller: 'BuyerController'
         })
