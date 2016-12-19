@@ -6,19 +6,12 @@ mainApp.controller('BuyerController', ['$scope', '$http', '$location', 'Contact'
     $scope.productList = [];
     $scope.contactList = [];
 
-    //$scope.addProduct = function () {
-    //    $scope.product.product_id = null;
-    //    $scope.product.$save(function () {
-    //        $scope.product = new Location();
-    //        $location.path('/buyer/products');
-    //        $scope.initialize();
-    //    });
-    //};
+
     $scope.Reset = function () {
-            $scope.new_c_number = '';
-            $scope.new_name = '';
-            $scope.new_l_name = '';
-        }
+        $scope.new_c_number = '';
+        $scope.new_name = '';
+        $scope.new_l_name = '';
+    };
     $scope.Reset();
 
     $scope.addContact = function () {
@@ -44,6 +37,23 @@ mainApp.controller('BuyerController', ['$scope', '$http', '$location', 'Contact'
         //    $scope.initialize();
         //});
 
+    };
+    //$scope.editContact = function() {
+    //    event.target.contentEditable = event.target.contentEditable == "false" ? "true" : "false";
+    //};
+    //$scope.addContact = function () {
+    //    $scope.contactList.push($scope.contact);
+    //    $scope.contact = new Contact();
+    //};
+
+    $scope.removeContact = function (c) {
+        var index = $scope.contactList.indexOf(c);
+        $scope.contactList.splice(index, 1);
+    };
+
+    $scope.updateContact = function (c) {
+        var index = $scope.contactList.indexOf(c);
+        $scope.contactList.splice(index, 1, $scope.contact);
     };
 
 

@@ -1,9 +1,7 @@
-echo 'Installing Pip...'; InstallPip
-echo 'Installing Flask...';
+sudo yum install python-pip
 sudo pip install flask
 yum -y install httpd
 yum install postgresql
-pip install Flask
 if ! [ -L /var/www ]; then
   rm -rf /var/www
   ln -fs /vagrant /var/www

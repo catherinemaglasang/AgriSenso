@@ -15,26 +15,38 @@ mainApp.config(function ($routeProvider, $locationProvider, $resourceProvider) {
         })
 
         .when('/buyer/dashboard', {
-            resolve: {
-                "check": function($location, $rootScope) {
-                    if(!$rootScope.loggedIn) {
-                        $location.path('/buyer/login')
-                    }
-                }
-            },
+            //resolve: {
+            //    "check": function($location, $rootScope) {
+            //        if(!$rootScope.loggedIn) {
+            //            $location.path('/buyer/login')
+            //        }
+            //    }
+            //},
             templateUrl: 'buyer/home.html',
             controller: 'BuyerController'
         })
 
         .when('/buyer/dashboard/contacts', {
-             resolve: {
-                "check": function($location, $rootScope) {
-                    if(!$rootScope.loggedIn) {
-                        $location.path('/buyer/login')
-                    }
-                }
-            },
+            // resolve: {
+            //    "check": function($location, $rootScope) {
+            //        if(!$rootScope.loggedIn) {
+            //            $location.path('/buyer/login')
+            //        }
+            //    }
+            //},
             templateUrl: 'buyer/contacts/contacts.html',
+            controller: 'BuyerController'
+        })
+
+        .when('/buyer/dashboard/contacts/:contact_id', {
+            // resolve: {
+            //    "check": function($location, $rootScope) {
+            //        if(!$rootScope.loggedIn) {
+            //            $location.path('/buyer/login')
+            //        }
+            //    }
+            //},
+            templateUrl: 'buyer/contacts/update_contact.html',
             controller: 'BuyerController'
         })
 
@@ -45,13 +57,13 @@ mainApp.config(function ($routeProvider, $locationProvider, $resourceProvider) {
         })
 
         .when('/buyer/dashboard/contacts/add', {
-             resolve: {
-                "check": function($location, $rootScope) {
-                    if(!$rootScope.loggedIn) {
-                        $location.path('/buyer/login')
-                    }
-                }
-            },
+            // resolve: {
+            //    "check": function($location, $rootScope) {
+            //        if(!$rootScope.loggedIn) {
+            //            $location.path('/buyer/login')
+            //        }
+            //    }
+            //},
             templateUrl: 'buyer/contacts/add_contacts.html',
             controller: 'BuyerController'
         })
