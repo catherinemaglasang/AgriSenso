@@ -4,8 +4,11 @@
   <title>AgriSenso</title>
   <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
   <meta content="utf-8" http-equiv="encoding">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="Buy/Sell and Guide platform for Farmers and potential farm products Buyer">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
   <!--<link href='http://fonts.googleapis.com/css?family=Roboto:500,300,700,400italic,400' rel='stylesheet' type='text/css'>--><link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
   <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'> -->
@@ -18,55 +21,30 @@
   <link href="static/css/plugins/morris.css" rel="stylesheet">
   <link href="static/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="static/font-awesome/css/font-awesome.css">
+
+    <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="static/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="static/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="static/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="static/css/seller.mystyle.css">
 </head>
 <body>
-  <div class="navbar-before mobile-hidden"></div>
-  <nav class="navbar navbar-inverse navbar-main yamm">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
-                        data-target="#main-nav-collapse" area_expanded="false"><span
-                        class="sr-only">Main Menu</span><span class="icon-bar"></span><span
-                        class="icon-bar"></span><span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html" style="padding:10px;">
-                    <img src="static/img/logo/Agrisenso.png" alt="AgriSenso" title="AgriSenso"/>
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="main-nav-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="index.html" data-effect="mfp-move-from-top" class="popup-text">HOME</a>
-                    </li>
-                    <li><a href="#" data-effect="mfp-move-from-top" class="popup-text">ABOUT</a>
-                    </li>
-                    <li><select class="selectpicker" data-live-search="true" onchange="location = this.value" style="font-size: 20px">
-                          <option data-effect="mfp-move-from-top" class="popup-text" >LOGIN</option>
-                          <option data-tokens="mustard" value="#/seller/login_seller">Seller</option>
-                          <option data-tokens="mustard" value="#/buyer/login">Buyer</option>
-                        </select>
-                    </li>
-                    <li><select class="selectpicker" data-live-search="true" onchange="location = this.value" style="font-size: 20px">
-                          <option data-effect="mfp-move-from-top" class="popup-text" >SIGN UP</option>
-                          <option data-tokens="mustard" value="seller/signup_seller.html">Seller</option>
-                          <option data-tokens="frosting" value="buyer/signup.html">Buyer</option>
-                        </select>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </nav>
   <div ng-view></div>
   <script src="static/js/jquery.js"></script>
   <script src="static/js/bootstrap.js"></script>
 
   <script src="static/js/angular.min.js"></script>
   <script src="static/js/angular-route.js"></script>
-    <script src="static/lib/angular-resource/angular-resource.min.js"></script>
+  <script src="static/lib/angular-resource/angular-resource.min.js"></script>
 
-
-  <!--***********************************-->
   <script src="static/app/app.module.js"></script>
   <script src="static/app/app.route.js"></script>
   <script src="static/app/app.route.js"></script>
@@ -74,7 +52,5 @@
   <script src="static/app/controllers/buyer.controller.js"></script>
   <script src="static/app/controllers/seller.controller.js"></script>
   <script src="static/app/controllers/main.controller.js"></script>
-
-
 </body>
 </html>
