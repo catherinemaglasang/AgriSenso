@@ -1,4 +1,4 @@
-<div ng-include src="'../../seller/index.html'"></div>
+<div ng-include src="'../../index.html'"></div>
 <div class="col-md-2"></div>
 <div class="col-md-10">
 <!-- <div class="sellercontainer" style="background-color: #4eb186;" > -->
@@ -33,13 +33,14 @@
                             <label>Date</label>
                             <input class="form-control" type="date" ng-model="date_added" required/>
                         </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Save">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Save">
-        </div>
+        
     </form>
     </section>
             <div class="gap"></div>
@@ -60,7 +61,7 @@
                         <td>{{ product.description }}</td>
                         <td>{{ product.price }}</td>
                         <td>{{ product.date_added}}</td>
-                        <td><a href="#/dashboard/products/{{ product.product_id }}">Edit</a></td>
+                        <td><a href="#/seller/dashboard/products/{{ product.product_id }}">Edit</a></td>
                    </tr>
                 </table>
             </div>

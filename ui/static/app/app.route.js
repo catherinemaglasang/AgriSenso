@@ -74,14 +74,6 @@ mainApp.config(function ($routeProvider, $locationProvider, $resourceProvider) {
         })
 
         //Seller Module
-        .when('/seller/login_seller', {
-            templateUrl: 'seller/login_seller.html',
-            controller: 'SellerLoginController'
-        })
-        .when('/seller/signup', {
-            templateUrl: 'seller/signup_seller.html',
-            controller: 'SellerController'
-        })
 
         .when('/seller/dashboard', {
             resolve: {
@@ -95,22 +87,40 @@ mainApp.config(function ($routeProvider, $locationProvider, $resourceProvider) {
             controller: 'SellerController'
         })
 
-        .when('/seller/dashboard/addcontact', {
-            templateUrl: 'seller/addcontact.html',
+        .when('/seller/login', {
+            templateUrl: 'seller/login_seller.html',
+            controller: 'SellerLoginController'
+        })
+        .when('/seller/signup', {
+            templateUrl: 'seller/signup_seller.html',
             controller: 'SellerController'
+        })
+
+        .when('/seller/logout', {
+            templateUrl: 'seller/login_seller.html',
+            controller: 'SellerLogoutController'
         })
 
         .when('/seller/dashboard/contacts', {
-            templateUrl: 'seller/contacts.html',
-            controller: 'SellerController'
-        })
-
-        .when('/seller/dashboard/products/add', {
-            templateUrl: 'seller/products/addproduct.html',
+             resolve: {
+                "check": function($location, $rootScope) {
+                    if(!$rootScope.loggedIn) {
+                        $location.path('/seller/login_seller')
+                    }
+                }
+            },
+            templateUrl: 'seller/contacts/contacts.html',
             controller: 'SellerController'
         })
 
         .when('/seller/dashboard/products', {
+             resolve: {
+                "check": function($location, $rootScope) {
+                    if(!$rootScope.loggedIn) {
+                        $location.path('/seller/login_seller')
+                    }
+                }
+            },
             templateUrl: 'seller/products/products.html',
             controller: 'SellerController'
         })
