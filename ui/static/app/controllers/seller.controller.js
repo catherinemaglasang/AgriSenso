@@ -50,7 +50,7 @@ mainApp.controller('SellerController', ['$scope', '$http', '$location', '$filter
 
 }]);
 
-mainApp.controller('SellerLoginController', function($scope, $location, $rootScope){
+mainApp.controller('SellerLoginController', function($scope, $location, $rootScope, toaster){
     $scope.submit = function() {
         if($scope.username == 'marjorie@gmail.com' && $scope.password == 'asdasd') {
             $rootScope.loggedIn = true;
@@ -65,5 +65,19 @@ mainApp.controller('SellerLoginController', function($scope, $location, $rootSco
             alert('Invalid credentials');
         }
     }
+});
+
+mainApp.controller('SellerLogoutController', function($location, $window, $scope, toaster, $rootScope){
+    $rootScope.loggedIn = false;
+    $window.localStorage.clear();
+    $location.path('/seller/login_seller.html');
+    toaster.pop({
+        type: 'success',
+        title: 'Success',
+        body: 'Logged out',
+        showCloseButton: true
+    });
+    $rootScope.loggedIn = false;
+
 });
 
