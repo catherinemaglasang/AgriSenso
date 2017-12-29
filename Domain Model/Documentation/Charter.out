@@ -1,0 +1,51 @@
+\BOOKMARK [0][-]{chapter.1}{Charter}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Abstract}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Vision}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.3}{Mission}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.4}{Objectives}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.5}{Principles}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.6}{Features}{chapter.1}% 7
+\BOOKMARK [1][-]{section.1.7}{Business Rules}{chapter.1}% 8
+\BOOKMARK [0][-]{chapter.2}{Stories}{}% 9
+\BOOKMARK [1][-]{section.2.1}{Roles}{chapter.2}% 10
+\BOOKMARK [1][-]{section.2.2}{Role Attributes}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.3}{Persona}{chapter.2}% 12
+\BOOKMARK [2][-]{subsection.2.3.1}{Seller}{section.2.3}% 13
+\BOOKMARK [2][-]{subsection.2.3.2}{Customer}{section.2.3}% 14
+\BOOKMARK [1][-]{section.2.4}{User Stories}{chapter.2}% 15
+\BOOKMARK [0][-]{chapter.3}{Use Cases}{}% 16
+\BOOKMARK [0][-]{chapter.4}{Test Cases}{}% 17
+\BOOKMARK [0][-]{chapter.5}{SQAP}{}% 18
+\BOOKMARK [1][-]{section.5.1}{Abstract}{chapter.5}% 19
+\BOOKMARK [1][-]{section.5.2}{Introduction}{chapter.5}% 20
+\BOOKMARK [2][-]{subsection.5.2.1}{Purpose}{section.5.2}% 21
+\BOOKMARK [2][-]{subsection.5.2.2}{Scope}{section.5.2}% 22
+\BOOKMARK [2][-]{subsection.5.2.3}{List of Definitions}{section.5.2}% 23
+\BOOKMARK [2][-]{subsection.5.2.4}{List of References}{section.5.2}% 24
+\BOOKMARK [1][-]{section.5.3}{Management}{chapter.5}% 25
+\BOOKMARK [2][-]{subsection.5.3.1}{Organization}{section.5.3}% 26
+\BOOKMARK [2][-]{subsection.5.3.2}{Tasks}{section.5.3}% 27
+\BOOKMARK [2][-]{subsection.5.3.3}{Responsibilities}{section.5.3}% 28
+\BOOKMARK [1][-]{section.5.4}{Documentation}{chapter.5}% 29
+\BOOKMARK [1][-]{section.5.5}{Standards, Practices, Conventions And Metrics}{chapter.5}% 30
+\BOOKMARK [2][-]{subsection.5.5.1}{Documentation Standards}{section.5.5}% 31
+\BOOKMARK [2][-]{subsection.5.5.2}{Design Standards}{section.5.5}% 32
+\BOOKMARK [2][-]{subsection.5.5.3}{API Documentation}{section.5.5}% 33
+\BOOKMARK [2][-]{subsection.5.5.4}{Coding Standards}{section.5.5}% 34
+\BOOKMARK [2][-]{subsection.5.5.5}{Testing Standards}{section.5.5}% 35
+\BOOKMARK [2][-]{subsection.5.5.6}{Metrics}{section.5.5}% 36
+\BOOKMARK [2][-]{subsection.5.5.7}{Compliance Monitoring}{section.5.5}% 37
+\BOOKMARK [2][-]{subsection.5.5.8}{Event Response Chart}{section.5.5}% 38
+\BOOKMARK [1][-]{section.5.6}{Review}{chapter.5}% 39
+\BOOKMARK [1][-]{section.5.7}{Test}{chapter.5}% 40
+\BOOKMARK [1][-]{section.5.8}{Problem reporting and corrective actions}{chapter.5}% 41
+\BOOKMARK [2][-]{subsection.5.8.1}{Changes in requirements of the customer}{section.5.8}% 42
+\BOOKMARK [1][-]{section.5.9}{Tools, techniques and methods}{chapter.5}% 43
+\BOOKMARK [1][-]{section.5.10}{Code Control}{chapter.5}% 44
+\BOOKMARK [1][-]{section.5.11}{Media Control}{chapter.5}% 45
+\BOOKMARK [1][-]{section.5.12}{Supplier Control}{chapter.5}% 46
+\BOOKMARK [1][-]{section.5.13}{Training}{chapter.5}% 47
+\BOOKMARK [1][-]{section.5.14}{Risk management}{chapter.5}% 48
+\BOOKMARK [2][-]{subsection.5.14.1}{Categories of risks}{section.5.14}% 49
+\BOOKMARK [0][-]{chapter.6}{Diagrams}{}% 50
+\BOOKMARK [0][-]{chapter.7}{References}{}% 51
